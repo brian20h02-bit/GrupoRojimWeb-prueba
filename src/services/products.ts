@@ -33,7 +33,7 @@ type ProductWithCategory = Prisma.ProductGetPayload<{
   select: typeof productSelect;
 }>;
 
-function serializeProduct(product: ProductWithCategory, stock = 0) {
+export function serializeProduct(product: ProductWithCategory, stock = 0) {
   return {
     ...product,
     price: product.price.toString(),
@@ -42,7 +42,7 @@ function serializeProduct(product: ProductWithCategory, stock = 0) {
   };
 }
 
-async function getStockByProductId(productIds: string[]) {
+export async function getStockByProductId(productIds: string[]) {
   if (productIds.length === 0) {
     return new Map<string, number>();
   }
