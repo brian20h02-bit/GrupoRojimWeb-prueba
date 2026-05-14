@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Distribución Eléctrica | Salta y Jujuy</title>
+  <meta name="description" content="Empresa líder en distribución de materiales eléctricos e iluminación con pronta entrega en Salta y Jujuy, norte de Argentina." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+
+      <!-- Logo -->
+      <a href="#" class="nav-logo" id="nav-logo-link" aria-label="Ir al inicio">
+        <img src="./assets/images/logo.png" alt="Logo empresa" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <span class="logo-fallback">⚡ ElecDist</span>
+      </a>
+
+      <!-- Nav Links (desktop) -->
+      <nav class="nav-links" id="nav-links" role="navigation" aria-label="Navegación principal">
+        <a href="#" class="nav-link active" id="nav-home">Home</a>
+        <a href="#servicios" class="nav-link" id="nav-servicios">Servicios</a>
+        <a href="#clientes" class="nav-link" id="nav-clientes">Clientes</a>
+      </nav>
+
+      <!-- Auth Buttons -->
+      <div class="nav-actions" id="nav-actions">
+        <a href="#login" class="btn btn-outline" id="btn-login">Log in</a>
+        <a href="#register" class="btn btn-primary" id="btn-register">Registrarse</a>
+      </div>
+
+      <!-- Hamburger Menu -->
+      <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+      <nav class="mobile-nav" aria-label="Navegación móvil">
+        <a href="#" class="mobile-nav-link" id="mobile-home">Home</a>
+        <a href="#servicios" class="mobile-nav-link" id="mobile-servicios">Servicios</a>
+        <a href="#clientes" class="mobile-nav-link" id="mobile-clientes">Clientes</a>
+      </nav>
+      <div class="mobile-actions">
+        <a href="#login" class="btn btn-outline btn-full" id="mobile-btn-login">Log in</a>
+        <a href="#register" class="btn btn-primary btn-full" id="mobile-btn-register">Registrarse</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <main>
+    <section class="hero" id="hero">
+      <!-- Parallax Background Image -->
+      <div class="hero-parallax-bg" id="hero-parallax-bg" aria-hidden="true">
+        <img src="./assets/images/hero_bg.jpg" alt="" draggable="false" />
+      </div>
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-container">
+
+        <!-- Left: Text Content -->
+        <div class="hero-content" id="hero-content">
+          <div class="hero-badge" id="hero-badge">
+            <span class="badge-dot"></span>
+            Norte de Argentina
+          </div>
+
+          <h1 class="hero-title" id="hero-title">
+            Distribución de materiales eléctricos e iluminación con
+            <span class="hero-highlight">pronta entrega</span>
+            en Salta y Jujuy
+          </h1>
+
+          <p class="hero-subtitle" id="hero-subtitle">
+            Soluciones integrales para proyectos industriales, comerciales y residenciales. Calidad certificada, stock permanente y respaldo técnico especializado.
+          </p>
+
+          <div class="hero-cta" id="hero-cta">
+            <a href="#nosotros" class="btn btn-cta btn-lg" id="btn-nosotros">Nosotros</a>
+            <a href="#servicios" class="btn btn-ghost btn-lg" id="btn-servicios-hero">Ver Servicios</a>
+          </div>
+
+          <div class="hero-stats" id="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">+500</span>
+              <span class="stat-label">Proyectos</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">+15</span>
+              <span class="stat-label">Años de experiencia</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">2</span>
+              <span class="stat-label">Provincias</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Image -->
+        <div class="hero-visual" id="hero-visual">
+          <div class="hero-image-wrapper">
+            <img
+              src="./assets/images/hero_electrical.png"
+              alt="Materiales eléctricos e iluminación profesional"
+              class="hero-img"
+              id="hero-img"
+              onerror="this.parentElement.classList.add('img-fallback')"
+            />
+            <div class="hero-image-glow"></div>
+          </div>
+          <!-- Floating card accent -->
+          <div class="hero-float-card" id="hero-float-card">
+            <span class="float-icon">⚡</span>
+            <div class="float-text">
+              <strong>Entrega Express</strong>
+              <span>Salta &amp; Jujuy</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator" id="scroll-indicator" aria-hidden="true">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ===== NOSOTROS SECTION ===== -->
+    <section class="nosotros-section" id="nosotros">
+      <div class="nosotros-container">
+
+        <!-- Section Header -->
+        <div class="nosotros-header">
+          <p class="nosotros-label">Sobre nosotros</p>
+          <h2 class="nosotros-heading">Líderes en distribución<br>eléctrica del norte argentino.</h2>
+        </div>
+
+        <!-- Folder Tabs + Card Wrapper -->
+        <div class="folder-ui" id="folder-ui">
+
+          <!-- Folder Tabs (top) -->
+          <div class="folder-tabs" id="folder-tabs" role="tablist" aria-label="Secciones de Nosotros">
+            <button class="folder-tab active" role="tab" aria-selected="true"  data-card="0" id="tab-0">
+              <span class="tab-num">01</span><span class="tab-label">Quiénes Somos</span>
+            </button>
+            <button class="folder-tab" role="tab" aria-selected="false" data-card="1" id="tab-1">
+              <span class="tab-num">02</span><span class="tab-label">Nuestra Misión</span>
+            </button>
+            <button class="folder-tab" role="tab" aria-selected="false" data-card="2" id="tab-2">
+              <span class="tab-num">03</span><span class="tab-label">Productos</span>
+            </button>
+            <button class="folder-tab" role="tab" aria-selected="false" data-card="3" id="tab-3">
+              <span class="tab-num">04</span><span class="tab-label">Cobertura</span>
+            </button>
+          </div>
+
+          <!-- Card Stage -->
+          <div class="card-stage" id="card-stage">
+
+            <!-- Arrow Left -->
+            <button class="card-arrow arrow-prev" id="card-prev" aria-label="Tarjeta anterior">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+
+            <!-- Cards -->
+            <div class="folder-cards" id="folder-cards" aria-live="polite">
+
+              <!-- Card 01: Quiénes Somos -->
+              <div class="folder-card active" data-index="0" role="tabpanel" aria-labelledby="tab-0">
+                <div class="fc-left">
+                  <span class="fc-num">01</span>
+                  <h3 class="fc-title">Quiénes<br>Somos</h3>
+                  <p class="fc-text">Somos una empresa familiar con más de 15 años de trayectoria en la distribución de materiales eléctricos e iluminación en el norte argentino. Nacimos en Salta con el compromiso de brindar soluciones confiables, atención personalizada y stock permanente para cada proyecto.</p>
+                  <a href="#" class="btn btn-dark fc-cta">Contactanos</a>
+                </div>
+                <div class="fc-image">
+                  <img src="./assets/images/nosotros_1.png" alt="Equipo ElecDist en depósito" onerror="this.style.display='none'" />
+                </div>
+                <div class="fc-sidebar">
+                  <div class="sidebar-tag">
+                    <span class="s-num">1</span>
+                    <span class="s-divider"></span>
+                    <span class="s-title">Nuestra empresa</span>
+                  </div>
+                  <p class="s-desc">Confianza, trayectoria y presencia local en todo el norte argentino.</p>
+                  <ul class="s-list">
+                    <li class="s-item active"><span>01</span> Fundada en Salta</li>
+                    <li class="s-item"><span>02</span> +15 años de experiencia</li>
+                    <li class="s-item"><span>03</span> +500 proyectos entregados</li>
+                    <li class="s-item"><span>04</span> Empresa familiar</li>
+                    <li class="s-item"><span>05</span> Stock permanente</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Card 02: Nuestra Misión -->
+              <div class="folder-card" data-index="1" role="tabpanel" aria-labelledby="tab-1">
+                <div class="fc-left">
+                  <span class="fc-num">02</span>
+                  <h3 class="fc-title">Nuestra<br>Misión</h3>
+                  <p class="fc-text">Nuestra misión es conectar a profesionales, empresas y proyectos con los mejores materiales eléctricos del mercado, garantizando calidad certificada, asesoramiento técnico especializado y entregas ágiles que no detienen ninguna obra.</p>
+                  <a href="#" class="btn btn-dark fc-cta">Nuestros valores</a>
+                </div>
+                <div class="fc-image">
+                  <img src="./assets/images/nosotros_2.png" alt="Materiales eléctricos en depósito" onerror="this.style.display='none'" />
+                </div>
+                <div class="fc-sidebar">
+                  <div class="sidebar-tag">
+                    <span class="s-num">2</span>
+                    <span class="s-divider"></span>
+                    <span class="s-title">Nuestros valores</span>
+                  </div>
+                  <p class="s-desc">Cada decisión está guiada por principios sólidos que nos diferencian.</p>
+                  <ul class="s-list">
+                    <li class="s-item active"><span>01</span> Compromiso con el cliente</li>
+                    <li class="s-item"><span>02</span> Calidad garantizada</li>
+                    <li class="s-item"><span>03</span> Respuesta inmediata</li>
+                    <li class="s-item"><span>04</span> Transparencia total</li>
+                    <li class="s-item"><span>05</span> Mejora continua</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Card 03: Productos -->
+              <div class="folder-card" data-index="2" role="tabpanel" aria-labelledby="tab-2">
+                <div class="fc-left">
+                  <span class="fc-num">03</span>
+                  <h3 class="fc-title">Nuestros<br>Productos</h3>
+                  <p class="fc-text">Distribuimos una amplia gama de materiales eléctricos e iluminación: cables y conductores, tableros y automatización, luminarias LED industriales y residenciales, materiales de instalación y herramientas para profesionales del rubro.</p>
+                  <a href="#servicios" class="btn btn-dark fc-cta">Ver catálogo</a>
+                </div>
+                <div class="fc-image">
+                  <img src="./assets/images/nosotros_3.png" alt="Showroom de luminarias LED" onerror="this.style.display='none'" />
+                </div>
+                <div class="fc-sidebar">
+                  <div class="sidebar-tag">
+                    <span class="s-num">3</span>
+                    <span class="s-divider"></span>
+                    <span class="s-title">Categorías</span>
+                  </div>
+                  <p class="s-desc">Más de 2.000 productos disponibles en stock permanente.</p>
+                  <ul class="s-list">
+                    <li class="s-item active"><span>01</span> Cables y conductores</li>
+                    <li class="s-item"><span>02</span> Tableros eléctricos</span></li>
+                    <li class="s-item"><span>03</span> Iluminación LED</li>
+                    <li class="s-item"><span>04</span> Automatización</li>
+                    <li class="s-item"><span>05</span> Herramientas</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Card 04: Cobertura -->
+              <div class="folder-card" data-index="3" role="tabpanel" aria-labelledby="tab-3">
+                <div class="fc-left">
+                  <span class="fc-num">04</span>
+                  <h3 class="fc-title">Nuestra<br>Cobertura</h3>
+                  <p class="fc-text">Operamos en las provincias de Salta y Jujuy con depósitos estratégicamente ubicados. Garantizamos entregas en tiempo récord para obras en capital e interior, con logística propia y rutas optimizadas para llegar a cada rincón del norte argentino.</p>
+                  <a href="#clientes" class="btn btn-dark fc-cta">Ver proyectos</a>
+                </div>
+                <div class="fc-image">
+                  <img src="./assets/images/nosotros_4.png" alt="Vista aérea de Salta capital" onerror="this.style.display='none'" />
+                </div>
+                <div class="fc-sidebar">
+                  <div class="sidebar-tag">
+                    <span class="s-num">4</span>
+                    <span class="s-divider"></span>
+                    <span class="s-title">Zonas de entrega</span>
+                  </div>
+                  <p class="s-desc">Cobertura completa en Salta y Jujuy, capital e interior.</p>
+                  <ul class="s-list">
+                    <li class="s-item active"><span>01</span> Salta Capital</li>
+                    <li class="s-item"><span>02</span> Gran Salta</li>
+                    <li class="s-item"><span>03</span> San Salvador de Jujuy</li>
+                    <li class="s-item"><span>04</span> Palpalá y alrededores</li>
+                    <li class="s-item"><span>05</span> Interior provincial</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div><!-- /folder-cards -->
+
+            <!-- Arrow Right -->
+            <button class="card-arrow arrow-next" id="card-next" aria-label="Siguiente tarjeta">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+
+          </div><!-- /card-stage -->
+        </div><!-- /folder-ui -->
+
+      </div><!-- /nosotros-container -->
+    </section>
+
+    <!-- ===== SERVICIOS SECTION ===== -->
+    <section class="servicios-section" id="servicios">
+      <div class="servicios-panel panel-catalogo">
+        <!-- Background image (smaller, positioned) -->
+        <div class="sp-bg sp-bg-catalogo" aria-hidden="true">
+          <img src="./assets/images/hero_electrical.png" alt="" />
+        </div>
+        <div class="sp-overlay"></div>
+        <div class="sp-content">
+          <span class="sp-num">01</span>
+          <h2 class="sp-title">Ver<br>Catálogo</h2>
+          <p class="sp-desc">Explorá nuestra línea completa de materiales eléctricos, luminarias LED y herramientas para profesionales.</p>
+          <a href="catalogo.html" class="btn btn-cta sp-btn">Ver catálogo</a>
+        </div>
+      </div>
+
+      <div class="servicios-divider" aria-hidden="true"></div>
+
+      <div class="servicios-panel panel-construccion">
+        <!-- Background: hero_bg.jpg fills this panel -->
+        <div class="sp-bg sp-bg-construccion" aria-hidden="true">
+          <img src="./assets/images/hero_bg.jpg" alt="" />
+        </div>
+        <div class="sp-overlay sp-overlay-dark"></div>
+        <div class="sp-content">
+          <span class="sp-num">02</span>
+          <h2 class="sp-title">Comenzá<br>tu Construcción</h2>
+          <p class="sp-desc">Asesoramiento personalizado, stock permanente y entrega rápida para que tu obra no se detenga.</p>
+          <a href="#nosotros" class="btn btn-ghost sp-btn" id="btn-servicios-nosotros">Contactanos</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER MINIMAL ===== -->
+  <footer class="footer" id="footer">
+    <div class="footer-inner">
+      <span class="footer-copy">&copy; 2026 Distribución Eléctrica Norte Argentina. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
