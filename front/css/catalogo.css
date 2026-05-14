@@ -54,6 +54,14 @@
   box-shadow: 0 1px 24px rgba(56, 34, 26, 0.07) !important;
 }
 
+/* Logo: blend white bg into the cream navbar */
+.page-catalog .logo-img {
+  mix-blend-mode: multiply;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
 .page-catalog .nav-link {
   color: var(--cat-brown-mid) !important;
 }
@@ -69,7 +77,7 @@
 }
 .page-catalog .btn-outline {
   border-color: var(--cat-orange) !important;
-  color: #ffffff !important;
+  color: #000000 !important;
   background: transparent !important;
 }
 .page-catalog .btn-outline:hover {
@@ -223,7 +231,7 @@
 
 .cat-hero-sub {
   font-size: 1.02rem;
-  color: var(--cat-brown-mid);
+  color: var(--cat-brown);
   line-height: 1.78;
   max-width: 500px;
   animation: fadeInUp 0.55s ease both;
@@ -313,7 +321,7 @@
 
 .metric-item span {
   font-size: 0.72rem;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   font-weight: 500;
   letter-spacing: 0.02em;
 }
@@ -356,7 +364,7 @@
 .feat-num {
   font-size: 0.68rem;
   font-weight: 800;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   letter-spacing: 0.06em;
 }
 
@@ -393,7 +401,7 @@
 
 .feat-body span {
   font-size: 0.76rem;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   line-height: 1.4;
 }
 
@@ -487,7 +495,7 @@
   gap: 8px;
   font-size: 0.72rem;
   font-weight: 800;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
@@ -501,7 +509,7 @@
 .filter-group-label {
   font-size: 0.68rem;
   font-weight: 700;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin: 0 0 6px;
@@ -562,7 +570,7 @@
   margin-left: auto;
   font-size: 0.68rem;
   font-weight: 700;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   background: var(--cat-bg-alt);
   padding: 1px 7px;
   border-radius: 99px;
@@ -612,7 +620,7 @@
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   pointer-events: none;
 }
 
@@ -694,7 +702,7 @@
   background: transparent;
   border: 1.5px solid var(--cat-border-mid);
   border-radius: var(--cat-radius-sm);
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   font-family: var(--font-family);
   font-size: 0.8rem;
   font-weight: 600;
@@ -770,7 +778,7 @@
 
 .cat-results-count {
   font-size: 0.83rem;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   font-weight: 500;
   margin: 0;
 }
@@ -794,7 +802,7 @@
   background: transparent;
   border: 1.5px solid var(--cat-border);
   border-radius: var(--cat-radius-sm);
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   cursor: pointer;
   transition: background var(--cat-transition), color var(--cat-transition), border-color var(--cat-transition);
 }
@@ -937,7 +945,7 @@
 .cat-card-num {
   font-size: 0.65rem;
   font-weight: 800;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   letter-spacing: 0.1em;
 }
 
@@ -952,7 +960,7 @@
 
 .cat-card-desc {
   font-size: 0.81rem;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown);
   line-height: 1.7;
   flex: 1;
   margin: 0;
@@ -1051,7 +1059,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   margin-bottom: 0.5rem;
 }
 
@@ -1064,7 +1072,7 @@
 
 .cat-empty-sub {
   font-size: 0.85rem;
-  color: var(--cat-brown-light);
+  color: var(--cat-brown-mid);
   max-width: 320px;
   margin: 0;
 }
