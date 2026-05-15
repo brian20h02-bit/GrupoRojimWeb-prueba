@@ -1,6 +1,10 @@
 import type { NextApiResponse } from "next";
 import { withAuth } from "@/services/auth";
-import { InsufficientStockError, recordStockExit } from "@/services/stock";
+import {
+  InsufficientStockError,
+  recordStockExit,
+  StockProductNotFoundError,
+} from "@/services/stock";
 import type { AuthenticatedNextApiRequest } from "@/types/api";
 import { stockMovementBodySchema } from "@/validation/stock";
 import { handleStockMutationError } from "./entries";
@@ -25,10 +29,14 @@ async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
     return res.status(201).json({ movement });
   } catch (error) {
     if (error instanceof InsufficientStockError) {
-      return res.status(409).json({
+      return res.status(400).json({
         error: "Insufficient stock for this exit.",
         currentStock: error.currentStock,
       });
+    }
+
+    if (error instanceof StockProductNotFoundError) {
+      return res.status(404).json({ error: "Product or user not found." });
     }
 
     return handleStockMutationError(error, res, "Unable to record stock exit.");

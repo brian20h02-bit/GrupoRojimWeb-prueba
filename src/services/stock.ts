@@ -58,6 +58,12 @@ export class InsufficientStockError extends Error {
   }
 }
 
+export class StockProductNotFoundError extends Error {
+  constructor() {
+    super("Product not found.");
+  }
+}
+
 export async function getCurrentStock(productId: string) {
   const stockByProductId = await getStockByProductId([productId]);
   return stockByProductId.get(productId) ?? 0;
@@ -79,24 +85,51 @@ export async function recordStockEntry(input: StockMovementBody, userId: string)
 }
 
 export async function recordStockExit(input: StockMovementBody, userId: string) {
-  const currentStock = await getCurrentStock(input.productId);
+  return prisma.$transaction(
+    async (tx) => {
+      const products = await tx.$queryRaw<Array<{ id: string }>>`
+        SELECT id
+        FROM "Product"
+        WHERE id = ${input.productId}
+        FOR UPDATE
+      `;
 
-  if (currentStock < input.quantity) {
-    throw new InsufficientStockError(currentStock);
-  }
+      if (products.length === 0) {
+        throw new StockProductNotFoundError();
+      }
 
-  return prisma.stockMovement.create({
-    data: {
-      productId: input.productId,
-      type: StockMovementType.SALIDA,
-      quantity: -input.quantity,
-      userId,
-      reason: input.reason,
-      reference: input.reference,
-      notes: input.notes,
+      const stock = await tx.stockMovement.aggregate({
+        where: {
+          productId: input.productId,
+        },
+        _sum: {
+          quantity: true,
+        },
+      });
+
+      const currentStock = stock._sum.quantity ?? 0;
+
+      if (currentStock < input.quantity) {
+        throw new InsufficientStockError(currentStock);
+      }
+
+      return tx.stockMovement.create({
+        data: {
+          productId: input.productId,
+          type: StockMovementType.SALIDA,
+          quantity: -input.quantity,
+          userId,
+          reason: input.reason,
+          reference: input.reference,
+          notes: input.notes,
+        },
+        select: movementSelect,
+      });
     },
-    select: movementSelect,
-  });
+    {
+      isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
+    },
+  );
 }
 
 export async function listStockHistory(query: StockHistoryQuery) {
