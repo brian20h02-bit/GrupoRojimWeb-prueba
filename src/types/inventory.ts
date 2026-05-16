@@ -22,6 +22,32 @@ export type ProductSummary = {
   };
 };
 
+export type Pagination = {
+  page: number;
+  limit: number;
+  total: number;
+  pages: number;
+};
+
+export type ProductListResponse = {
+  products: ProductSummary[];
+  pagination: Pagination;
+};
+
+export type CategorySummary = {
+  id: string;
+  name: string;
+  slug: string;
+  createdAt: string;
+  _count?: {
+    products: number;
+  };
+};
+
+export type CategoryListResponse = {
+  categories: CategorySummary[];
+};
+
 export type StockSummaryResponse = {
   products: ProductSummary[];
   belowMinimum: ProductSummary[];
