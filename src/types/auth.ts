@@ -7,6 +7,10 @@ export type CurrentUser = {
   role: Role;
 };
 
+export type UserRecord = CurrentUser & {
+  createdAt: string;
+};
+
 export type LoginResponse = {
   token: string;
   user: CurrentUser;
