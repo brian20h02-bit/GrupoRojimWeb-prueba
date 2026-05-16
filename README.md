@@ -1,6 +1,6 @@
-# Luminoa Inventory Backend
+# Luminoa Inventory
 
-Backend para la aplicacion de inventario de Luminoa, construido con Next.js API routes, TypeScript, Prisma ORM y PostgreSQL.
+Sistema web de inventario de Luminoa. Incluye backend con Next.js API routes, TypeScript, Prisma ORM y PostgreSQL, mas un panel interno conectado a esas APIs.
 
 ## Requisitos
 
@@ -13,8 +13,8 @@ Backend para la aplicacion de inventario de Luminoa, construido con Next.js API 
 Crear un archivo `.env` en la raiz del proyecto:
 
 ```env
-DATABASE_URL="postgresql://postgres:luminoa123@localhost:5432/luminoa_inventory?schema=public"
-JWT_SECRET="cambiar-por-un-secreto-largo"
+DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/luminoa_inventory?schema=public"
+JWT_SECRET="your-long-random-secret"
 ```
 
 `DATABASE_URL` debe apuntar a tu base PostgreSQL local o remota.
@@ -45,7 +45,7 @@ Ver datos en Prisma Studio:
 npm run prisma:studio
 ```
 
-Levantar la API en desarrollo:
+Levantar la aplicacion en desarrollo:
 
 ```bash
 npm run dev
@@ -60,12 +60,51 @@ npm run build
 
 ## Usuario inicial
 
-El seed crea un administrador:
+El seed crea un administrador de desarrollo:
 
 ```text
 Email: admin@luminoa.local
 Password: Admin123!
 Role: ADMIN
+```
+
+Estas credenciales son solo para entorno local/desarrollo. Cambiarlas antes de usar el sistema en produccion.
+
+## Panel interno
+
+Rutas principales:
+
+```text
+/login
+/dashboard
+/dashboard/productos
+/dashboard/stock
+/dashboard/entradas
+/dashboard/salidas
+/dashboard/historial
+/dashboard/usuarios
+```
+
+El panel guarda temporalmente el JWT y el usuario actual en `localStorage`.
+
+Accesos por rol:
+
+```text
+ADMIN: Dashboard, Productos, Stock, Entradas, Salidas, Historial, Usuarios
+RECEPCIONISTA: Dashboard, Productos, Stock, Entradas, Historial
+VENDEDOR: Dashboard, Productos, Stock, Salidas, Historial
+```
+
+Pantallas implementadas en Sprint 1:
+
+```text
+Dashboard: resumen por rol, stock total, bajo stock, sin stock, ultimos movimientos
+Productos: listado, busqueda, paginacion, creacion y desactivacion admin
+Stock: overview con filtros de bajo stock y sin stock
+Entradas: formulario de ingreso de mercaderia
+Salidas: formulario de salida con validacion de stock
+Historial: tabla de movimientos con filtros
+Usuarios: gestion admin de usuarios
 ```
 
 ## Autenticacion
@@ -131,7 +170,7 @@ Stock:
 ```text
 POST /api/stock/entries
 POST /api/stock/exits
-GET  /api/stock/history?productId=&userId=&from=&to=&page=1&limit=50
+GET  /api/stock/history?productId=&userId=&type=&from=&to=&page=1&limit=50
 GET  /api/stock/summary
 ```
 
