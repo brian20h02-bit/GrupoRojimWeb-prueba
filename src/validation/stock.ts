@@ -1,3 +1,4 @@
+import { StockMovementType } from "@prisma/client";
 import { z } from "zod";
 
 const dateSchema = z
@@ -17,6 +18,7 @@ export const stockHistoryQuerySchema = z
   .object({
     productId: z.string().uuid("El id del producto no es valido.").optional(),
     userId: z.string().uuid("El id del usuario no es valido.").optional(),
+    type: z.nativeEnum(StockMovementType).optional(),
     from: dateSchema,
     to: dateSchema,
     page: z.coerce.number().int().positive().default(1),

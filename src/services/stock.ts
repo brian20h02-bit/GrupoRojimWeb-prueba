@@ -136,6 +136,7 @@ export async function listStockHistory(query: StockHistoryQuery) {
   const where: Prisma.StockMovementWhereInput = {
     ...(query.productId ? { productId: query.productId } : {}),
     ...(query.userId ? { userId: query.userId } : {}),
+    ...(query.type ? { type: query.type } : {}),
     ...(query.from || query.to
       ? {
           createdAt: {
