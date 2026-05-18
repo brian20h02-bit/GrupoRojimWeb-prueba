@@ -1,0 +1,218 @@
+import { useRouter } from "next/router";
+import { useEffect, useMemo, useState } from "react";
+import { ApiError, apiFetch } from "@/lib/api";
+import { clearSession, getStoredUser } from "@/lib/frontend-auth";
+import type {
+  CategoryListResponse,
+  CategorySummary,
+  ProductListResponse,
+  ProductSummary,
+} from "@/types/inventory";
+import { ProductFilters } from "./ProductFilters";
+import { ProductFormModal, type ProductFormValues } from "./ProductFormModal";
+import { ProductTable } from "./ProductTable";
+
+export function ProductsView() {
+  const router = useRouter();
+  const [products, setProducts] = useState<ProductSummary[]>([]);
+  const [categories, setCategories] = useState<CategorySummary[]>([]);
+  const [pagination, setPagination] = useState<ProductListResponse["pagination"] | null>(null);
+  const [search, setSearch] = useState("");
+  const [appliedSearch, setAppliedSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formError, setFormError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const user = getStoredUser();
+  const canManage = user?.role === "ADMIN";
+
+  const query = useMemo(() => {
+    const params = new URLSearchParams({
+      page: String(page),
+      limit: "10",
+    });
+
+    if (appliedSearch) {
+      params.set("search", appliedSearch);
+    }
+
+    return params.toString();
+  }, [appliedSearch, page]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadProducts() {
+      setIsLoading(true);
+      setError("");
+
+      try {
+        const [productsResponse, categoriesResponse] = await Promise.all([
+          apiFetch<ProductListResponse>(`/api/products?${query}`),
+          apiFetch<CategoryListResponse>("/api/categories"),
+        ]);
+
+        if (!isMounted) {
+          return;
+        }
+
+        setProducts(productsResponse.products);
+        setPagination(productsResponse.pagination);
+        setCategories(categoriesResponse.categories);
+      } catch (productsError) {
+        if (!isMounted) {
+          return;
+        }
+
+        if (productsError instanceof ApiError && productsError.status === 401) {
+          clearSession();
+          void router.replace("/login");
+          return;
+        }
+
+        setError("No se pudieron cargar los productos.");
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    void loadProducts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [query, router]);
+
+  function handleSearchSubmit() {
+    setPage(1);
+    setAppliedSearch(search.trim());
+  }
+
+  async function handleCreateProduct(values: ProductFormValues) {
+    setIsSubmitting(true);
+    setFormError("");
+
+    try {
+      await apiFetch<{ product: ProductSummary }>("/api/products", {
+        method: "POST",
+        body: JSON.stringify(values),
+      });
+
+      setIsModalOpen(false);
+      setPage(1);
+      setAppliedSearch("");
+      setSearch("");
+    } catch (createError) {
+      if (createError instanceof ApiError) {
+        setFormError(createError.message);
+      } else {
+        setFormError("No se pudo crear el producto.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function handleDeactivateProduct(product: ProductSummary) {
+    const shouldDeactivate = window.confirm(`Desactivar ${product.name}?`);
+
+    if (!shouldDeactivate) {
+      return;
+    }
+
+    try {
+      await apiFetch<{ product: ProductSummary }>(`/api/products/${product.id}`, {
+        method: "DELETE",
+      });
+
+      setProducts((current) =>
+        current.map((item) => (item.id === product.id ? { ...item, active: false } : item)),
+      );
+    } catch (deactivateError) {
+      if (deactivateError instanceof ApiError) {
+        setError(deactivateError.message);
+      } else {
+        setError("No se pudo desactivar el producto.");
+      }
+    }
+  }
+
+  return (
+    <div className="space-y-5">
+      <ProductFilters
+        search={search}
+        onSearchChange={setSearch}
+        onSubmit={handleSearchSubmit}
+        canCreate={Boolean(canManage)}
+        onCreate={() => {
+          setFormError("");
+          setIsModalOpen(true);
+        }}
+      />
+
+      {error ? (
+        <section className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+          {error}
+        </section>
+      ) : null}
+
+      {isLoading ? <ProductsSkeleton /> : <ProductTable products={products} canManage={Boolean(canManage)} onDeactivate={handleDeactivateProduct} />}
+
+      {pagination ? (
+        <div className="flex flex-col gap-3 rounded-lg border border-luminoa-line bg-white p-4 text-sm text-luminoa-muted sm:flex-row sm:items-center sm:justify-between">
+          <span>
+            Pagina {pagination.page} de {Math.max(pagination.pages, 1)} · {pagination.total} productos
+          </span>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setPage((current) => Math.max(current - 1, 1))}
+              disabled={pagination.page <= 1 || isLoading}
+              className="rounded-md border border-luminoa-line px-3 py-2 font-medium text-slate-700 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Anterior
+            </button>
+            <button
+              type="button"
+              onClick={() => setPage((current) => current + 1)}
+              disabled={pagination.page >= pagination.pages || isLoading}
+              className="rounded-md border border-luminoa-line px-3 py-2 font-medium text-slate-700 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      ) : null}
+
+      {isModalOpen ? (
+        <ProductFormModal
+          categories={categories}
+          isSubmitting={isSubmitting}
+          error={formError}
+          onClose={() => setIsModalOpen(false)}
+          onSubmit={handleCreateProduct}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function ProductsSkeleton() {
+  return (
+    <div className="space-y-3 rounded-lg border border-luminoa-line bg-white p-4">
+      {[0, 1, 2, 3, 4].map((item) => (
+        <div key={item} className="grid animate-pulse gap-3 md:grid-cols-6">
+          <div className="h-5 rounded bg-slate-200" />
+          <div className="h-5 rounded bg-slate-200 md:col-span-2" />
+          <div className="h-5 rounded bg-slate-200" />
+          <div className="h-5 rounded bg-slate-200" />
+          <div className="h-5 rounded bg-slate-200" />
+        </div>
+      ))}
+    </div>
+  );
+}
