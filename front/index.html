@@ -7,7 +7,7 @@
   <meta name="description" content="Empresa líder en distribución de materiales eléctricos e iluminación con pronta entrega en Salta y Jujuy, norte de Argentina." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -31,8 +31,8 @@
 
       <!-- Auth Buttons -->
       <div class="nav-actions" id="nav-actions">
-        <a href="#login" class="btn btn-outline" id="btn-login">Log in</a>
-        <a href="#register" class="btn btn-primary" id="btn-register">Registrarse</a>
+        <a href="#" data-auth-link class="btn btn-outline" id="btn-login">Log in</a>
+        <a href="#" data-auth-link class="btn btn-primary" id="btn-register">Registrarse</a>
       </div>
 
       <!-- Hamburger Menu -->
@@ -52,8 +52,8 @@
         <a href="#clientes" class="mobile-nav-link" id="mobile-clientes">Clientes</a>
       </nav>
       <div class="mobile-actions">
-        <a href="#login" class="btn btn-outline btn-full" id="mobile-btn-login">Log in</a>
-        <a href="#register" class="btn btn-primary btn-full" id="mobile-btn-register">Registrarse</a>
+        <a href="#" data-auth-link class="btn btn-outline btn-full" id="mobile-btn-login">Log in</a>
+        <a href="#" data-auth-link class="btn btn-primary btn-full" id="mobile-btn-register">Registrarse</a>
       </div>
     </div>
   </header>
@@ -138,168 +138,309 @@
     </section>
 
     <!-- ===== NOSOTROS SECTION ===== -->
-    <section class="nosotros-section" id="nosotros">
-      <div class="nosotros-container">
+    <section class="nos-section" id="nosotros">
+      <div class="nos-inner">
 
-        <!-- Section Header -->
-        <div class="nosotros-header">
-          <p class="nosotros-label">Sobre nosotros</p>
-          <h2 class="nosotros-heading">Líderes en distribución<br>eléctrica del norte argentino.</h2>
+        <!-- ── BLOQUE 1: HERO DE PRESENTACIÓN ── -->
+        <div class="nos-hero" id="nos-hero">
+          <div class="nos-hero-bg" aria-hidden="true"></div>
+          <div class="nos-hero-content">
+            <p class="nos-eyebrow" id="nos-hero-eyebrow">Sobre nosotros</p>
+            <h2 class="nos-hero-title" id="nos-hero-title">
+              Construimos más que proyectos.<br>
+              <em class="nos-em">Creamos soluciones.</em>
+            </h2>
+            <p class="nos-hero-sub" id="nos-hero-sub">
+              Grupo Rojim y Luminoa integran construcción, distribución eléctrica e iluminación para ofrecer soluciones completas, eficientes y escalables en el norte argentino.
+            </p>
+            <div class="nos-hero-stats" id="nos-hero-stats">
+              <div class="nos-stat">
+                <span class="nos-stat-num">+15</span>
+                <span class="nos-stat-lbl">Años de trayectoria</span>
+              </div>
+              <div class="nos-stat-sep"></div>
+              <div class="nos-stat">
+                <span class="nos-stat-num">+500</span>
+                <span class="nos-stat-lbl">Proyectos ejecutados</span>
+              </div>
+              <div class="nos-stat-sep"></div>
+              <div class="nos-stat">
+                <span class="nos-stat-num">2</span>
+                <span class="nos-stat-lbl">Provincias cubiertas</span>
+              </div>
+            </div>
+          </div>
+          <div class="nos-hero-visual" id="nos-hero-visual" aria-hidden="true">
+            <svg class="nos-hero-svg" viewBox="0 0 440 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="220" cy="240" r="200" stroke="rgba(245,166,35,0.10)" stroke-width="1"/>
+              <circle cx="220" cy="240" r="148" stroke="rgba(245,166,35,0.16)" stroke-width="1"/>
+              <circle cx="220" cy="240" r="96" stroke="rgba(245,166,35,0.24)" stroke-width="1"/>
+              <circle cx="220" cy="240" r="44" stroke="rgba(245,166,35,0.4)" stroke-width="1.5"/>
+              <line x1="20" y1="240" x2="420" y2="240" stroke="rgba(245,166,35,0.08)" stroke-width="1"/>
+              <line x1="220" y1="40" x2="220" y2="440" stroke="rgba(245,166,35,0.08)" stroke-width="1"/>
+              <line x1="79" y1="99" x2="361" y2="381" stroke="rgba(245,166,35,0.05)" stroke-width="1"/>
+              <line x1="361" y1="99" x2="79" y2="381" stroke="rgba(245,166,35,0.05)" stroke-width="1"/>
+              <!-- Electric bolt -->
+              <path d="M232 96 L192 250 L224 250 L208 384 L248 226 L216 226 Z" fill="#F5A623" opacity="0.9"/>
+              <circle cx="220" cy="240" r="7" fill="#F5A623"/>
+              <circle cx="72" cy="240" r="3" fill="rgba(245,166,35,0.45)"/>
+              <circle cx="368" cy="240" r="3" fill="rgba(245,166,35,0.45)"/>
+              <circle cx="220" cy="92" r="3" fill="rgba(245,166,35,0.45)"/>
+              <circle cx="220" cy="388" r="3" fill="rgba(245,166,35,0.45)"/>
+              <path d="M 76 196 A 150 150 0 0 1 220 90" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+              <path d="M 364 284 A 150 150 0 0 1 220 390" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+              <!-- Tick marks on outer ring -->
+              <line x1="220" y1="40" x2="220" y2="52" stroke="rgba(245,166,35,0.4)" stroke-width="2"/>
+              <line x1="420" y1="240" x2="408" y2="240" stroke="rgba(245,166,35,0.4)" stroke-width="2"/>
+              <line x1="220" y1="440" x2="220" y2="428" stroke="rgba(245,166,35,0.4)" stroke-width="2"/>
+              <line x1="20" y1="240" x2="32" y2="240" stroke="rgba(245,166,35,0.4)" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
 
-        <!-- Folder Tabs + Card Wrapper -->
-        <div class="folder-ui" id="folder-ui">
-
-          <!-- Folder Tabs (top) -->
-          <div class="folder-tabs" id="folder-tabs" role="tablist" aria-label="Secciones de Nosotros">
-            <button class="folder-tab active" role="tab" aria-selected="true"  data-card="0" id="tab-0">
-              <span class="tab-num">01</span><span class="tab-label">Quiénes Somos</span>
-            </button>
-            <button class="folder-tab" role="tab" aria-selected="false" data-card="1" id="tab-1">
-              <span class="tab-num">02</span><span class="tab-label">Nuestra Misión</span>
-            </button>
-            <button class="folder-tab" role="tab" aria-selected="false" data-card="2" id="tab-2">
-              <span class="tab-num">03</span><span class="tab-label">Productos</span>
-            </button>
-            <button class="folder-tab" role="tab" aria-selected="false" data-card="3" id="tab-3">
-              <span class="tab-num">04</span><span class="tab-label">Cobertura</span>
-            </button>
+        <!-- ── BLOQUE 2: TIMELINE ── -->
+        <div class="nos-timeline" id="nos-timeline">
+          <div class="nos-block-header">
+            <p class="nos-label">Nuestra historia</p>
+            <h3 class="nos-block-title">Una trayectoria construida <em class="nos-em">con propósito</em></h3>
           </div>
-
-          <!-- Card Stage -->
-          <div class="card-stage" id="card-stage">
-
-            <!-- Arrow Left -->
-            <button class="card-arrow arrow-prev" id="card-prev" aria-label="Tarjeta anterior">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-
-            <!-- Cards -->
-            <div class="folder-cards" id="folder-cards" aria-live="polite">
-
-              <!-- Card 01: Quiénes Somos -->
-              <div class="folder-card active" data-index="0" role="tabpanel" aria-labelledby="tab-0">
-                <div class="fc-left">
-                  <span class="fc-num">01</span>
-                  <h3 class="fc-title">Quiénes<br>Somos</h3>
-                  <p class="fc-text">Somos una empresa familiar con más de 15 años de trayectoria en la distribución de materiales eléctricos e iluminación en el norte argentino. Nacimos en Salta con el compromiso de brindar soluciones confiables, atención personalizada y stock permanente para cada proyecto.</p>
-                  <a href="#" class="btn btn-dark fc-cta">Contactanos</a>
-                </div>
-                <div class="fc-image">
-                  <img src="./assets/images/nosotros_1.png" alt="Equipo ElecDist en depósito" onerror="this.style.display='none'" />
-                </div>
-                <div class="fc-sidebar">
-                  <div class="sidebar-tag">
-                    <span class="s-num">1</span>
-                    <span class="s-divider"></span>
-                    <span class="s-title">Nuestra empresa</span>
-                  </div>
-                  <p class="s-desc">Confianza, trayectoria y presencia local en todo el norte argentino.</p>
-                  <ul class="s-list">
-                    <li class="s-item active"><span>01</span> Fundada en Salta</li>
-                    <li class="s-item"><span>02</span> +15 años de experiencia</li>
-                    <li class="s-item"><span>03</span> +500 proyectos entregados</li>
-                    <li class="s-item"><span>04</span> Empresa familiar</li>
-                    <li class="s-item"><span>05</span> Stock permanente</li>
-                  </ul>
+          <div class="nos-tl-track" id="nos-tl-track">
+            <div class="nos-tl-line">
+              <div class="nos-tl-line-fill" id="nos-tl-fill"></div>
+            </div>
+            <div class="nos-tl-items">
+              <div class="nos-tl-item">
+                <div class="nos-tl-dot"><span class="nos-tl-dot-inner"></span></div>
+                <div class="nos-tl-body">
+                  <span class="nos-tl-year">2018</span>
+                  <h4 class="nos-tl-title">Nace Luminoa</h4>
+                  <p class="nos-tl-text">Nace Luminoa en Salta Capital como unidad de distribución de Grupo Rojim, especializada en materiales eléctricos e iluminación de alta calidad para el NOA.</p>
                 </div>
               </div>
-
-              <!-- Card 02: Nuestra Misión -->
-              <div class="folder-card" data-index="1" role="tabpanel" aria-labelledby="tab-1">
-                <div class="fc-left">
-                  <span class="fc-num">02</span>
-                  <h3 class="fc-title">Nuestra<br>Misión</h3>
-                  <p class="fc-text">Nuestra misión es conectar a profesionales, empresas y proyectos con los mejores materiales eléctricos del mercado, garantizando calidad certificada, asesoramiento técnico especializado y entregas ágiles que no detienen ninguna obra.</p>
-                  <a href="#" class="btn btn-dark fc-cta">Nuestros valores</a>
-                </div>
-                <div class="fc-image">
-                  <img src="./assets/images/nosotros_2.png" alt="Materiales eléctricos en depósito" onerror="this.style.display='none'" />
-                </div>
-                <div class="fc-sidebar">
-                  <div class="sidebar-tag">
-                    <span class="s-num">2</span>
-                    <span class="s-divider"></span>
-                    <span class="s-title">Nuestros valores</span>
-                  </div>
-                  <p class="s-desc">Cada decisión está guiada por principios sólidos que nos diferencian.</p>
-                  <ul class="s-list">
-                    <li class="s-item active"><span>01</span> Compromiso con el cliente</li>
-                    <li class="s-item"><span>02</span> Calidad garantizada</li>
-                    <li class="s-item"><span>03</span> Respuesta inmediata</li>
-                    <li class="s-item"><span>04</span> Transparencia total</li>
-                    <li class="s-item"><span>05</span> Mejora continua</li>
-                  </ul>
+              <div class="nos-tl-item">
+                <div class="nos-tl-dot"><span class="nos-tl-dot-inner"></span></div>
+                <div class="nos-tl-body">
+                  <span class="nos-tl-year">Expansión</span>
+                  <h4 class="nos-tl-title">Crecimiento regional</h4>
+                  <p class="nos-tl-text">Ampliamos operaciones en Salta, Jujuy y el interior del NOA. Consolidamos la logística propia, expandimos el portafolio y abrimos nuevas líneas de producto.</p>
                 </div>
               </div>
-
-              <!-- Card 03: Productos -->
-              <div class="folder-card" data-index="2" role="tabpanel" aria-labelledby="tab-2">
-                <div class="fc-left">
-                  <span class="fc-num">03</span>
-                  <h3 class="fc-title">Nuestros<br>Productos</h3>
-                  <p class="fc-text">Distribuimos una amplia gama de materiales eléctricos e iluminación: cables y conductores, tableros y automatización, luminarias LED industriales y residenciales, materiales de instalación y herramientas para profesionales del rubro.</p>
-                  <a href="#servicios" class="btn btn-dark fc-cta">Ver catálogo</a>
-                </div>
-                <div class="fc-image">
-                  <img src="./assets/images/nosotros_3.png" alt="Showroom de luminarias LED" onerror="this.style.display='none'" />
-                </div>
-                <div class="fc-sidebar">
-                  <div class="sidebar-tag">
-                    <span class="s-num">3</span>
-                    <span class="s-divider"></span>
-                    <span class="s-title">Categorías</span>
-                  </div>
-                  <p class="s-desc">Más de 2.000 productos disponibles en stock permanente.</p>
-                  <ul class="s-list">
-                    <li class="s-item active"><span>01</span> Cables y conductores</li>
-                    <li class="s-item"><span>02</span> Tableros eléctricos</span></li>
-                    <li class="s-item"><span>03</span> Iluminación LED</li>
-                    <li class="s-item"><span>04</span> Automatización</li>
-                    <li class="s-item"><span>05</span> Herramientas</li>
-                  </ul>
+              <div class="nos-tl-item">
+                <div class="nos-tl-dot"><span class="nos-tl-dot-inner"></span></div>
+                <div class="nos-tl-body">
+                  <span class="nos-tl-year">Hoy</span>
+                  <h4 class="nos-tl-title">Empresa consolidada</h4>
+                  <p class="nos-tl-text">Doble unidad de negocio integrada: Luminoa en distribución eléctrica y Grupo Rojim en ejecución de obras. Soluciones integrales de punta a punta.</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
 
-              <!-- Card 04: Cobertura -->
-              <div class="folder-card" data-index="3" role="tabpanel" aria-labelledby="tab-3">
-                <div class="fc-left">
-                  <span class="fc-num">04</span>
-                  <h3 class="fc-title">Nuestra<br>Cobertura</h3>
-                  <p class="fc-text">Operamos en las provincias de Salta y Jujuy con depósitos estratégicamente ubicados. Garantizamos entregas en tiempo récord para obras en capital e interior, con logística propia y rutas optimizadas para llegar a cada rincón del norte argentino.</p>
-                  <a href="#clientes" class="btn btn-dark fc-cta">Ver proyectos</a>
-                </div>
-                <div class="fc-image">
-                  <img src="./assets/images/nosotros_4.png" alt="Vista aérea de Salta capital" onerror="this.style.display='none'" />
-                </div>
-                <div class="fc-sidebar">
-                  <div class="sidebar-tag">
-                    <span class="s-num">4</span>
-                    <span class="s-divider"></span>
-                    <span class="s-title">Zonas de entrega</span>
-                  </div>
-                  <p class="s-desc">Cobertura completa en Salta y Jujuy, capital e interior.</p>
-                  <ul class="s-list">
-                    <li class="s-item active"><span>01</span> Salta Capital</li>
-                    <li class="s-item"><span>02</span> Gran Salta</li>
-                    <li class="s-item"><span>03</span> San Salvador de Jujuy</li>
-                    <li class="s-item"><span>04</span> Palpalá y alrededores</li>
-                    <li class="s-item"><span>05</span> Interior provincial</li>
-                  </ul>
-                </div>
+        <!-- ── BLOQUE 3: DOBLE UNIDAD DE NEGOCIO ── -->
+        <div class="nos-duo" id="nos-duo">
+          <div class="nos-duo-header">
+            <p class="nos-label">Nuestras unidades de negocio</p>
+            <h3 class="nos-block-title">Un ecosistema <em class="nos-em">integrado</em></h3>
+          </div>
+          <div class="nos-duo-grid">
+
+            <!-- Grupo Rojim — empresa madre -->
+            <div class="nos-duo-card nos-card-rojim" id="nos-card-rojim">
+              <div class="nos-duo-card-glow" aria-hidden="true"></div>
+              <div class="nos-duo-num">01</div>
+              <div class="nos-duo-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 42V22L24 6L42 22V42H30V30H18V42H6Z" fill="currentColor"/>
+                </svg>
               </div>
+              <h3 class="nos-duo-name">Grupo Rojim</h3>
+              <p class="nos-duo-tagline">Construcción y soluciones llave en mano</p>
+              <p class="nos-duo-desc">Ejecutamos proyectos de construcción, instalaciones eléctricas y soluciones integrales. Desde la planificación hasta la entrega total, con equipo propio y trayectoria comprobada en el NOA.</p>
+              <ul class="nos-duo-features">
+                <li>Ejecución de obra civil</li>
+                <li>Instalaciones eléctricas completas</li>
+                <li>Proyectos llave en mano</li>
+                <li>Cobertura en toda la región</li>
+              </ul>
+            </div>
 
-            </div><!-- /folder-cards -->
+            <!-- Connector -->
+            <div class="nos-duo-connector" aria-hidden="true">
+              <div class="nos-duo-conn-line"></div>
+              <div class="nos-duo-conn-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <div class="nos-duo-conn-line"></div>
+            </div>
 
-            <!-- Arrow Right -->
-            <button class="card-arrow arrow-next" id="card-next" aria-label="Siguiente tarjeta">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
+            <!-- Luminoa — unidad comercial -->
+            <div class="nos-duo-card nos-card-luminoa" id="nos-card-luminoa">
+              <div class="nos-duo-card-glow" aria-hidden="true"></div>
+              <div class="nos-duo-num">02</div>
+              <div class="nos-duo-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M26 4L10 26H24L22 44L38 22H24L26 4Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <h3 class="nos-duo-name">Luminoa</h3>
+              <p class="nos-duo-tagline">Distribución eléctrica e iluminación</p>
+              <p class="nos-duo-desc">Distribuimos materiales eléctricos de alta calidad, luminarias LED industriales y residenciales con stock permanente, asesoramiento técnico y pronta entrega en todo el NOA.</p>
+              <ul class="nos-duo-features">
+                <li>Cables y conductores certificados</li>
+                <li>Tableros y automatización</li>
+                <li>Iluminación LED industrial y residencial</li>
+                <li>Stock permanente en depósito propio</li>
+              </ul>
+            </div>
 
-          </div><!-- /card-stage -->
-        </div><!-- /folder-ui -->
+          </div>
+        </div>
 
-      </div><!-- /nosotros-container -->
+        <!-- ── BLOQUE 4: MISIÓN + VISIÓN + VALORES ── -->
+        <div class="nos-mvv" id="nos-mvv">
+          <div class="nos-mvv-top">
+            <div class="nos-mvv-card nos-mision">
+              <p class="nos-label">Misión</p>
+              <h3 class="nos-mvv-title">Conectar proyectos con las mejores soluciones</h3>
+              <p class="nos-mvv-text">Ser el puente entre profesionales, empresas y constructoras con los mejores materiales eléctricos y soluciones constructivas del mercado, garantizando calidad, velocidad y soporte real en cada etapa del proyecto.</p>
+            </div>
+            <div class="nos-mvv-card nos-vision">
+              <p class="nos-label">Visión</p>
+              <h3 class="nos-mvv-title">Liderar el mercado del NOA</h3>
+              <p class="nos-mvv-text">Ser la empresa referente en distribución eléctrica y construcción en el norte argentino, reconocida por su capacidad técnica, su red logística y su compromiso genuino con cada cliente.</p>
+            </div>
+          </div>
+          <div class="nos-valores-wrap">
+            <p class="nos-label">Nuestros valores</p>
+            <div class="nos-valores-grid" id="nos-valores-grid">
+              <div class="nos-valor-item">
+                <div class="nos-valor-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span class="nos-valor-name">Honestidad</span>
+              </div>
+              <div class="nos-valor-item">
+                <div class="nos-valor-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="nos-valor-name">Determinación</span>
+              </div>
+              <div class="nos-valor-item">
+                <div class="nos-valor-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <span class="nos-valor-name">Respeto</span>
+              </div>
+              <div class="nos-valor-item">
+                <div class="nos-valor-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <span class="nos-valor-name">Compromiso</span>
+              </div>
+              <div class="nos-valor-item">
+                <div class="nos-valor-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                </div>
+                <span class="nos-valor-name">Asesoramiento</span>
+              </div>
+              <div class="nos-valor-item">
+                <div class="nos-valor-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <span class="nos-valor-name">Pronta entrega</span>
+              </div>
+              <div class="nos-valor-item">
+                <div class="nos-valor-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <span class="nos-valor-name">Excelencia</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── BLOQUE 5: DIFERENCIALES ── -->
+        <div class="nos-diff" id="nos-diff">
+          <div class="nos-diff-header">
+            <p class="nos-label">Por qué elegirnos</p>
+            <h3 class="nos-block-title">Nuestros <em class="nos-em">diferenciales</em></h3>
+          </div>
+          <div class="nos-diff-grid" id="nos-diff-grid">
+            <div class="nos-diff-item">
+              <div class="nos-diff-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              </div>
+              <h4 class="nos-diff-title">Pronta entrega</h4>
+              <p class="nos-diff-text">Logística propia para entregas express en capital e interior del NOA sin demoras.</p>
+            </div>
+            <div class="nos-diff-item">
+              <div class="nos-diff-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <h4 class="nos-diff-title">Cobertura regional</h4>
+              <p class="nos-diff-text">Presencia en Salta, Jujuy y todo el interior provincial con depósitos estratégicos.</p>
+            </div>
+            <div class="nos-diff-item">
+              <div class="nos-diff-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h4 class="nos-diff-title">Atención personalizada</h4>
+              <p class="nos-diff-text">Un asesor dedicado que conoce tu proyecto y te acompaña de principio a fin.</p>
+            </div>
+            <div class="nos-diff-item">
+              <div class="nos-diff-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <h4 class="nos-diff-title">Soporte comercial</h4>
+              <p class="nos-diff-text">Respuesta rápida por WhatsApp, llamada o visita. Sin burocracia ni demoras.</p>
+            </div>
+            <div class="nos-diff-item">
+              <div class="nos-diff-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              </div>
+              <h4 class="nos-diff-title">Asesoramiento técnico</h4>
+              <p class="nos-diff-text">Profesionales especializados que te ayudan a elegir la solución correcta para cada obra.</p>
+            </div>
+            <div class="nos-diff-item">
+              <div class="nos-diff-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <h4 class="nos-diff-title">Soluciones integrales</h4>
+              <p class="nos-diff-text">Materiales + instalación + seguimiento. Todo bajo un mismo techo, sin intermediarios.</p>
+            </div>
+            <div class="nos-diff-item">
+              <div class="nos-diff-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+              <h4 class="nos-diff-title">Materiales certificados</h4>
+              <p class="nos-diff-text">Solo trabajamos con marcas líderes y productos con certificación nacional e internacional.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── BLOQUE 6: CTA FINAL ── -->
+        <div class="nos-cta" id="nos-cta">
+          <div class="nos-cta-inner">
+            <div class="nos-cta-glow" aria-hidden="true"></div>
+            <p class="nos-eyebrow nos-cta-eyebrow">¿Listo para comenzar?</p>
+            <h2 class="nos-cta-title">Tu próximo proyecto empieza<br>con una <em class="nos-em">buena decisión</em></h2>
+            <p class="nos-cta-sub">Te acompañamos desde la planificación hasta la ejecución completa.</p>
+            <div class="nos-cta-actions">
+              <a href="catalogo.html" class="btn btn-cta btn-lg">Solicitar cotización</a>
+              <a href="https://wa.me/5493876000000?text=Hola%2C%20quiero%20hablar%20con%20un%20asesor%20de%20Grupo%20Rojim" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-lg nos-wa-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="nos-wa-icon" aria-hidden="true" width="18" height="18">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                </svg>
+                Hablar con un asesor
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /nos-inner -->
     </section>
 
     <!-- ===== SERVICIOS SECTION ===== -->
@@ -344,6 +485,10 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/config.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/nosotros.js"></script>
 </body>
 </html>
