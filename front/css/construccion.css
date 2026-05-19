@@ -12,6 +12,18 @@
   overflow-x: hidden;
 }
 
+/* ─── NAVBAR override — fondo negro de la página, no marrón ── */
+.page-construccion .navbar {
+  background: rgba(10, 10, 15, 0.85);
+}
+
+.page-construccion .navbar.scrolled {
+  background: rgba(10, 10, 15, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(245, 166, 35, 0.12), 0 4px 24px rgba(0, 0, 0, 0.55);
+}
+
 /* ─── HERO ──────────────────────────────────────────────────── */
 .stx-hero {
   position: relative;
@@ -772,6 +784,8 @@
   border: 1px solid rgba(37,211,102,.2);
   border-radius: 12px;
 }
+/* Prevent display:flex from overriding the [hidden] attribute */
+.stx-form-success[hidden] { display: none !important; }
 .success-icon-ring {
   width: 72px; height: 72px; border-radius: 50%;
   background: rgba(37,211,102,.12);

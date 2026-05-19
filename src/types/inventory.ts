@@ -10,6 +10,7 @@ export type ProductSummary = {
   unitPerBox: number;
   stockMin: number;
   active: boolean;
+  imageUrl: string | null;
   categoryId: string;
   createdAt: string;
   updatedAt: string;

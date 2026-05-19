@@ -4,10 +4,11 @@ import { StockBadge } from "./StockBadge";
 type ProductTableProps = {
   products: ProductSummary[];
   canManage: boolean;
+  onEdit: (product: ProductSummary) => void;
   onDeactivate: (product: ProductSummary) => void;
 };
 
-export function ProductTable({ products, canManage, onDeactivate }: ProductTableProps) {
+export function ProductTable({ products, canManage, onEdit, onDeactivate }: ProductTableProps) {
   if (products.length === 0) {
     return (
       <section className="rounded-lg border border-luminoa-line bg-white p-8 text-center text-sm text-luminoa-muted">
@@ -59,9 +60,8 @@ export function ProductTable({ products, canManage, onDeactivate }: ProductTable
                     <div className="flex gap-2">
                       <button
                         type="button"
-                        className="rounded-md border border-luminoa-line px-3 py-1.5 text-xs font-medium text-slate-500"
-                        disabled
-                        title="La edicion completa se implementara en una iteracion posterior."
+                        onClick={() => onEdit(product)}
+                        className="rounded-md border border-luminoa-line px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:bg-slate-50"
                       >
                         Editar
                       </button>

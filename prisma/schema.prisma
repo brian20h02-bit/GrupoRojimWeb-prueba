@@ -31,31 +31,42 @@ model User {
 }
 
 model Category {
-  id        String    @id @default(uuid())
-  name      String
-  slug      String    @unique
-  createdAt DateTime  @default(now())
-  products  Product[]
+  id          String    @id @default(uuid())
+  name        String
+  slug        String    @unique
+  description String?
+  iconSlug    String?   // maps to SVG icon key on the frontend
+  sortOrder   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  products    Product[]
 }
 
 model Product {
-  id          String          @id @default(uuid())
-  name        String
-  code        String          @unique
-  description String?
-  price       Decimal         @db.Decimal(10, 2)
-  brand       String
-  unitPerBox  Int
-  stockMin    Int             @default(0)
-  active      Boolean         @default(true)
-  categoryId  String
-  category    Category        @relation(fields: [categoryId], references: [id], onDelete: Restrict)
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
-  movements   StockMovement[]
+  id             String          @id @default(uuid())
+  name           String
+  code           String          @unique
+  slug           String?         @unique // SEO slug generated from code + name
+  description    String?
+  price          Decimal         @db.Decimal(10, 2)
+  brand          String
+  unitPerBox     Int
+  stockMin       Int             @default(0)
+  active         Boolean         @default(true)
+  catalogVisible Boolean         @default(true) // show in public catalog
+  featured       Boolean         @default(false) // highlight in catalog
+  imageUrl       String?         // product image URL
+  subcategory    String?         // subcategory within the main category
+  categoryId     String
+  category       Category        @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  movements      StockMovement[]
 
   @@index([categoryId])
   @@index([active])
+  @@index([catalogVisible])
+  @@index([featured])
+  @@index([brand])
   @@index([name])
 }
 

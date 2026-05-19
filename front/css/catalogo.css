@@ -1665,3 +1665,132 @@
     padding: 1.75rem var(--space-sm) 2.5rem;
   }
 }
+
+/* ─── Search input in sidebar ─────────────────────────────────────────────── */
+.filter-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.filter-search-icon {
+  position: absolute;
+  left: 11px;
+  color: var(--cat-brown-light);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+.filter-search-input {
+  width: 100%;
+  padding: 9px 12px 9px 34px;
+  background: var(--cat-bg-alt);
+  border: 1.5px solid var(--cat-border-mid);
+  border-radius: var(--cat-radius-sm);
+  font-family: var(--font-family);
+  font-size: 0.83rem;
+  color: var(--cat-brown);
+  outline: none;
+  transition: border-color var(--cat-transition);
+  -webkit-appearance: none;
+}
+.filter-search-input::placeholder { color: var(--cat-brown-light); }
+.filter-search-input:focus { border-color: var(--cat-orange); }
+
+/* ─── Skeleton loading cards ─────────────────────────────────────────────── */
+@keyframes skel-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.cat-skeleton {
+  background: var(--cat-bg-card);
+  border: 1px solid var(--cat-border);
+  border-radius: var(--cat-radius-md);
+  overflow: hidden;
+}
+.skel-visual {
+  height: 160px;
+  background: linear-gradient(90deg, var(--cat-bg-alt) 25%, var(--cat-bg) 50%, var(--cat-bg-alt) 75%);
+  background-size: 800px 100%;
+  animation: skel-shimmer 1.4s infinite linear;
+}
+.skel-body { padding: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.skel-line {
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--cat-bg-alt) 25%, var(--cat-bg) 50%, var(--cat-bg-alt) 75%);
+  background-size: 800px 100%;
+  animation: skel-shimmer 1.4s infinite linear;
+}
+.skel-brand { height: 10px; width: 40%; }
+.skel-title { height: 14px; width: 80%; }
+.skel-desc  { height: 10px; width: 95%; }
+.skel-cta   { height: 32px; width: 60%; margin-top: 0.4rem; border-radius: var(--cat-radius-sm); }
+
+/* ─── Product card price ─────────────────────────────────────────────────── */
+.cat-card-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cat-orange);
+  margin: 0.3rem 0 0;
+}
+
+/* ─── Load more section ──────────────────────────────────────────────────── */
+.cat-load-more-wrap {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 2rem 0 1rem;
+}
+.load-more-info {
+  font-size: 0.82rem;
+  color: var(--cat-brown-light);
+  margin: 0;
+}
+.btn-load-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 11px 26px;
+  background: transparent;
+  border: 1.5px solid var(--cat-border-mid);
+  border-radius: var(--cat-radius-sm);
+  font-family: var(--font-family);
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: var(--cat-brown-mid);
+  cursor: pointer;
+  transition: border-color var(--cat-transition), color var(--cat-transition), background var(--cat-transition);
+}
+.btn-load-more:hover {
+  border-color: var(--cat-orange);
+  color: var(--cat-orange);
+  background: var(--cat-orange-tint);
+}
+
+/* ─── Card con imagen real ──────────────────────────────────────── */
+.cat-card-visual--img {
+  background: #f8f8f8;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.cat-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+}
+
+/* Darken overlay so badge text stays readable over photos */
+.cat-card-visual--img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.45) 0%, transparent 55%);
+  border-radius: inherit;
+  pointer-events: none;
+}

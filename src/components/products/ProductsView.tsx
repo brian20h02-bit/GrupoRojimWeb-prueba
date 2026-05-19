@@ -23,6 +23,7 @@ export function ProductsView() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState<ProductSummary | null>(null);
   const [formError, setFormError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const user = getStoredUser();
@@ -92,6 +93,23 @@ export function ProductsView() {
     setAppliedSearch(search.trim());
   }
 
+  function handleOpenCreate() {
+    setEditingProduct(null);
+    setFormError("");
+    setIsModalOpen(true);
+  }
+
+  function handleOpenEdit(product: ProductSummary) {
+    setEditingProduct(product);
+    setFormError("");
+    setIsModalOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false);
+    setEditingProduct(null);
+  }
+
   async function handleCreateProduct(values: ProductFormValues) {
     setIsSubmitting(true);
     setFormError("");
@@ -103,6 +121,7 @@ export function ProductsView() {
       });
 
       setIsModalOpen(false);
+      setEditingProduct(null);
       setPage(1);
       setAppliedSearch("");
       setSearch("");
@@ -111,6 +130,33 @@ export function ProductsView() {
         setFormError(createError.message);
       } else {
         setFormError("No se pudo crear el producto.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function handleEditProduct(values: ProductFormValues) {
+    if (!editingProduct) return;
+    setIsSubmitting(true);
+    setFormError("");
+
+    try {
+      const updated = await apiFetch<{ product: ProductSummary }>(`/api/products/${editingProduct.id}`, {
+        method: "PUT",
+        body: JSON.stringify(values),
+      });
+
+      setProducts((current) =>
+        current.map((item) => (item.id === editingProduct.id ? updated.product : item)),
+      );
+      setIsModalOpen(false);
+      setEditingProduct(null);
+    } catch (editError) {
+      if (editError instanceof ApiError) {
+        setFormError(editError.message);
+      } else {
+        setFormError("No se pudo actualizar el producto.");
       }
     } finally {
       setIsSubmitting(false);
@@ -148,10 +194,7 @@ export function ProductsView() {
         onSearchChange={setSearch}
         onSubmit={handleSearchSubmit}
         canCreate={Boolean(canManage)}
-        onCreate={() => {
-          setFormError("");
-          setIsModalOpen(true);
-        }}
+        onCreate={handleOpenCreate}
       />
 
       {error ? (
@@ -160,7 +203,7 @@ export function ProductsView() {
         </section>
       ) : null}
 
-      {isLoading ? <ProductsSkeleton /> : <ProductTable products={products} canManage={Boolean(canManage)} onDeactivate={handleDeactivateProduct} />}
+      {isLoading ? <ProductsSkeleton /> : <ProductTable products={products} canManage={Boolean(canManage)} onEdit={handleOpenEdit} onDeactivate={handleDeactivateProduct} />}
 
       {pagination ? (
         <div className="flex flex-col gap-3 rounded-lg border border-luminoa-line bg-white p-4 text-sm text-luminoa-muted sm:flex-row sm:items-center sm:justify-between">
@@ -193,8 +236,9 @@ export function ProductsView() {
           categories={categories}
           isSubmitting={isSubmitting}
           error={formError}
-          onClose={() => setIsModalOpen(false)}
-          onSubmit={handleCreateProduct}
+          initialProduct={editingProduct ?? undefined}
+          onClose={handleCloseModal}
+          onSubmit={editingProduct ? handleEditProduct : handleCreateProduct}
         />
       ) : null}
     </div>

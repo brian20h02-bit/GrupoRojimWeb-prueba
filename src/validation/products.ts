@@ -29,6 +29,7 @@ export const createProductSchema = z.object({
   unitPerBox: positiveIntSchema,
   stockMin: nonNegativeIntSchema.default(0),
   active: z.boolean().optional(),
+  imageUrl: z.string().url().nullable().optional(),
   categoryId: z.string().uuid("El id de la categoria no es valido."),
 });
 
@@ -42,10 +43,11 @@ export const updateProductSchema = z
     unitPerBox: positiveIntSchema.optional(),
     stockMin: nonNegativeIntSchema.optional(),
     active: z.boolean().optional(),
+    imageUrl: z.string().url().nullable().optional(),
     categoryId: z.string().uuid("El id de la categoria no es valido.").optional(),
   })
   .refine(
-    ({ name, code, description, price, brand, unitPerBox, stockMin, active, categoryId }) =>
+    ({ name, code, description, price, brand, unitPerBox, stockMin, active, imageUrl, categoryId }) =>
       name !== undefined ||
       code !== undefined ||
       description !== undefined ||
@@ -54,6 +56,7 @@ export const updateProductSchema = z
       unitPerBox !== undefined ||
       stockMin !== undefined ||
       active !== undefined ||
+      imageUrl !== undefined ||
       categoryId !== undefined,
     {
       message: "Debe enviar al menos un campo para actualizar.",
