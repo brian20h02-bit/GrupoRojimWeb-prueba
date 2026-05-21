@@ -40,6 +40,7 @@ const stockSummaryProductSelect = {
   unitPerBox: true,
   stockMin: true,
   active: true,
+  imageUrl: true,
   categoryId: true,
   createdAt: true,
   updatedAt: true,
