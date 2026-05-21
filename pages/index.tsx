@@ -17,7 +17,9 @@ export async function getStaticProps() {
     .split("./assets/")
     .join("/landing/assets/")
     .split("catalogo.html")
-    .join("/landing/catalogo.html");
+    .join("/landing/catalogo.html")
+    .split("construccion.html")
+    .join("/landing/construccion.html");
 
   return {
     props: {
