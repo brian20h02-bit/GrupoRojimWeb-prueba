@@ -155,6 +155,14 @@ function renderProducts(products, reset) {
       ? `<p class="cat-card-price">$${formatPrice(product.price)}</p>`
       : "";
 
+    // Stock badge
+    const stockQty = typeof product.stock === "number" ? product.stock : null;
+    const stockHtml = stockQty === null
+      ? `<span class="cat-card-stock consult-stock">Consultar</span>`
+      : stockQty > 0
+        ? `<span class="cat-card-stock in-stock">${stockQty} en stock</span>`
+        : `<span class="cat-card-stock no-stock">Sin stock</span>`;
+
     const resolvedImageUrl = product.imageUrl
       ? product.imageUrl.startsWith("/")
         ? APP_CONFIG.backendUrl + product.imageUrl
@@ -166,14 +174,14 @@ function renderProducts(products, reset) {
           `<img src="${escHtml(resolvedImageUrl)}" alt="${escHtml(product.name)}" class="cat-card-img" loading="lazy" />` +
           `<div class="card-visual-footer">` +
             `<span class="cat-card-badge">${escHtml(product.code)}</span>` +
-            `<span class="cat-card-stock in-stock">En stock</span>` +
+            stockHtml +
           `</div>` +
         `</div>`
       : `<div class="cat-card-visual cat-img-${iconSlug}" aria-hidden="true">` +
           getCategoryIcon(iconSlug) +
           `<div class="card-visual-footer">` +
             `<span class="cat-card-badge">${escHtml(product.code)}</span>` +
-            `<span class="cat-card-stock in-stock">En stock</span>` +
+            stockHtml +
           `</div>` +
         `</div>`;
 

@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prisma";
+import { getStockByProductId } from "@/services/products";
 
 /**
  * GET /api/public/products
@@ -81,8 +82,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       prisma.product.count({ where }),
     ]);
 
+    const stockMap = await getStockByProductId(products.map((p) => p.id));
+
     return res.status(200).json({
-      products: products.map((p) => ({ ...p, price: p.price.toString() })),
+      products: products.map((p) => ({
+        ...p,
+        price: p.price.toString(),
+        stock: stockMap.get(p.id) ?? 0,
+      })),
       pagination: {
         page: pageNum,
         limit: limitNum,

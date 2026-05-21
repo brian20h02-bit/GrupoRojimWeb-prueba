@@ -165,6 +165,7 @@ export function updateProduct(id: string, input: UpdateProductInput) {
         ...(input.unitPerBox !== undefined ? { unitPerBox: input.unitPerBox } : {}),
         ...(input.stockMin !== undefined ? { stockMin: input.stockMin } : {}),
         ...(input.active !== undefined ? { active: input.active } : {}),
+        ...(input.imageUrl !== undefined ? { imageUrl: input.imageUrl } : {}),
         ...(input.categoryId !== undefined ? { categoryId: input.categoryId } : {}),
       },
       select: productSelect,

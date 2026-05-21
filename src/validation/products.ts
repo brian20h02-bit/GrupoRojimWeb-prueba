@@ -29,7 +29,7 @@ export const createProductSchema = z.object({
   unitPerBox: positiveIntSchema,
   stockMin: nonNegativeIntSchema.default(0),
   active: z.boolean().optional(),
-  imageUrl: z.string().url().nullable().optional(),
+  imageUrl: z.string().min(1).nullable().optional(),
   categoryId: z.string().uuid("El id de la categoria no es valido."),
 });
 
@@ -43,7 +43,7 @@ export const updateProductSchema = z
     unitPerBox: positiveIntSchema.optional(),
     stockMin: nonNegativeIntSchema.optional(),
     active: z.boolean().optional(),
-    imageUrl: z.string().url().nullable().optional(),
+    imageUrl: z.string().min(1).nullable().optional(),
     categoryId: z.string().uuid("El id de la categoria no es valido.").optional(),
   })
   .refine(

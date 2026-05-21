@@ -999,6 +999,12 @@
   border: 1px solid rgba(224, 124, 10, 0.22);
 }
 
+.no-stock {
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.20);
+}
+
 /* Card CTA button */
 .cat-card-cta {
   display: inline-flex;
@@ -1769,10 +1775,9 @@
 
 /* ─── Card con imagen real ──────────────────────────────────────── */
 .cat-card-visual--img {
-  background: #f8f8f8;
-  display: flex;
-  align-items: stretch;
-  justify-content: stretch;
+  position: relative;
+  background: #f0ede8;
+  overflow: hidden;
 }
 
 .cat-card-img {
@@ -1782,7 +1787,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: inherit;
 }
 
 /* Darken overlay so badge text stays readable over photos */
@@ -1790,7 +1794,22 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.45) 0%, transparent 55%);
-  border-radius: inherit;
+  background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 60%);
   pointer-events: none;
+  z-index: 1;
+}
+
+.cat-card-visual--img .card-visual-footer {
+  z-index: 2;
+  background: transparent;
+}
+
+.cat-card-visual--img .cat-card-badge {
+  color: #fff;
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.35);
+}
+
+.cat-card-visual--img .cat-card-stock {
+  color: #fff;
 }
