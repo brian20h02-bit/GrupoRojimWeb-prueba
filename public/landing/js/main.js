@@ -238,11 +238,8 @@
   const nosotrosSection = document.getElementById('nosotros');
   const serviciosSection = document.getElementById('servicios');
   const btnNosotros      = document.getElementById('btn-nosotros');
-  const nTabs            = document.querySelectorAll('.folder-tab');
-  const nCards           = document.querySelectorAll('.folder-card');
-  const nPrev            = document.getElementById('card-prev');
-  const nNext            = document.getElementById('card-next');
-  let   nCurrent         = 0;
+  // folder-tab elements removed — new nosotros uses GSAP storytelling
+  let nCurrent = 0; // kept for safety (prev/next refs are null-checked below)
 
   function closeAll() {
     nosotrosSection && nosotrosSection.classList.remove('open');
@@ -271,6 +268,9 @@
       if (e.propertyName !== 'max-height') return;
       section.removeEventListener('transitionend', onTransitionEnd);
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (section === nosotrosSection && typeof window.initNosotrosAnimations === 'function') {
+        window.initNosotrosAnimations();
+      }
     }
     section.addEventListener('transitionend', onTransitionEnd);
 
@@ -279,6 +279,9 @@
     setTimeout(() => {
       section.removeEventListener('transitionend', onTransitionEnd);
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (section === nosotrosSection && typeof window.initNosotrosAnimations === 'function') {
+        window.initNosotrosAnimations();
+      }
     }, 900);
   }
 
@@ -315,27 +318,6 @@
       toggleNosotros();
     });
   }
-
-  // Folder card navigation
-  function gotoCard(idx) {
-    const total = nCards.length;
-    if (total === 0) return;
-    nCurrent = ((idx % total) + total) % total;
-    nCards.forEach((c, i) => c.classList.toggle('active', i === nCurrent));
-    nTabs.forEach((t, i) => {
-      t.classList.toggle('active', i === nCurrent);
-      t.setAttribute('aria-selected', String(i === nCurrent));
-    });
-  }
-
-  nTabs.forEach((tab, i) => tab.addEventListener('click', () => gotoCard(i)));
-  if (nPrev) nPrev.addEventListener('click', () => gotoCard(nCurrent - 1));
-  if (nNext) nNext.addEventListener('click', () => gotoCard(nCurrent + 1));
-
-  document.getElementById('card-stage')?.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') gotoCard(nCurrent + 1);
-    if (e.key === 'ArrowLeft')  gotoCard(nCurrent - 1);
-  });
 
   // Servicios triggers (navbar link + hero button)
   const serviciosTriggers = document.querySelectorAll('a[href="#servicios"], button[data-target="servicios"]');

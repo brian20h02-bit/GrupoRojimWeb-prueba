@@ -38,15 +38,20 @@ export default function HomePage({ landingContent }: HomePageProps) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" type="image/svg+xml" href="/landing/assets/brand/favicon.svg" />
         <link rel="stylesheet" href="/landing/css/style.css" />
       </Head>
 
       <PublicNavbar />
       <div dangerouslySetInnerHTML={{ __html: landingContent }} />
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" strategy="beforeInteractive" />
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" strategy="beforeInteractive" />
+      <Script src="/landing/js/config.js" strategy="beforeInteractive" />
       <Script src="/landing/js/main.js" strategy="afterInteractive" />
+      <Script src="/landing/js/nosotros.js" strategy="afterInteractive" />
     </>
   );
 }
@@ -57,7 +62,7 @@ function PublicNavbar() {
       <div className="nav-container">
         <a href="#" className="nav-logo" id="nav-logo-link" aria-label="Ir al inicio">
           <img
-            src="/landing/assets/images/logo.png"
+            src="/landing/assets/brand/logo.png"
             alt="Logo empresa"
             className="logo-img"
             onError={(event) => {
