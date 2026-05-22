@@ -70,6 +70,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           price: true,
           brand: true,
           unitPerBox: true,
+          stockMin: true,
           featured: true,
           imageUrl: true,
           subcategory: true,

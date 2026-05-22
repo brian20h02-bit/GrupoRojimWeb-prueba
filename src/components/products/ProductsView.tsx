@@ -164,7 +164,7 @@ export function ProductsView() {
   }
 
   async function handleDeactivateProduct(product: ProductSummary) {
-    const shouldDeactivate = window.confirm(`Desactivar ${product.name}?`);
+    const shouldDeactivate = window.confirm(`¿Deshabilitar ${product.name}?`);
 
     if (!shouldDeactivate) {
       return;
@@ -172,7 +172,8 @@ export function ProductsView() {
 
     try {
       await apiFetch<{ product: ProductSummary }>(`/api/products/${product.id}`, {
-        method: "DELETE",
+        method: "PUT",
+        body: JSON.stringify({ active: false }),
       });
 
       setProducts((current) =>
@@ -182,7 +183,55 @@ export function ProductsView() {
       if (deactivateError instanceof ApiError) {
         setError(deactivateError.message);
       } else {
-        setError("No se pudo desactivar el producto.");
+        setError("No se pudo deshabilitar el producto.");
+      }
+    }
+  }
+
+  async function handleReactivateProduct(product: ProductSummary) {
+    const shouldReactivate = window.confirm(`¿Habilitar ${product.name} nuevamente?`);
+
+    if (!shouldReactivate) {
+      return;
+    }
+
+    try {
+      const data = await apiFetch<{ product: ProductSummary }>(`/api/products/${product.id}`, {
+        method: "PATCH",
+      });
+
+      setProducts((current) =>
+        current.map((item) => (item.id === product.id ? data.product : item)),
+      );
+    } catch (reactivateError) {
+      if (reactivateError instanceof ApiError) {
+        setError(reactivateError.message);
+      } else {
+        setError("No se pudo habilitar el producto.");
+      }
+    }
+  }
+
+  async function handleDeleteProduct(product: ProductSummary) {
+    const confirmed = window.confirm(
+      `¿Eliminar permanentemente ${product.name}?\nEsta acción no se puede deshacer y borrará todo el historial de stock.`,
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await apiFetch(`/api/products/${product.id}`, {
+        method: "DELETE",
+      });
+
+      setProducts((current) => current.filter((item) => item.id !== product.id));
+    } catch (deleteError) {
+      if (deleteError instanceof ApiError) {
+        setError(deleteError.message);
+      } else {
+        setError("No se pudo eliminar el producto.");
       }
     }
   }
@@ -203,7 +252,7 @@ export function ProductsView() {
         </section>
       ) : null}
 
-      {isLoading ? <ProductsSkeleton /> : <ProductTable products={products} canManage={Boolean(canManage)} onEdit={handleOpenEdit} onDeactivate={handleDeactivateProduct} />}
+      {isLoading ? <ProductsSkeleton /> : <ProductTable products={products} canManage={Boolean(canManage)} onEdit={handleOpenEdit} onDeactivate={handleDeactivateProduct} onReactivate={handleReactivateProduct} onDelete={handleDeleteProduct} />}
 
       {pagination ? (
         <div className="flex flex-col gap-3 rounded-lg border border-luminoa-line bg-white p-4 text-sm text-luminoa-muted sm:flex-row sm:items-center sm:justify-between">

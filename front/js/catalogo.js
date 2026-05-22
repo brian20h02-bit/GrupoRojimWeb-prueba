@@ -156,12 +156,16 @@ function renderProducts(products, reset) {
       : "";
 
     // Stock badge
-    const stockQty = typeof product.stock === "number" ? product.stock : null;
+    // Stock badge
+    const stockQty  = typeof product.stock    === "number" ? product.stock    : null;
+    const stockMin  = typeof product.stockMin === "number" ? product.stockMin : 0;
     const stockHtml = stockQty === null
       ? `<span class="cat-card-stock consult-stock">Consultar</span>`
-      : stockQty > 0
-        ? `<span class="cat-card-stock in-stock">${stockQty} en stock</span>`
-        : `<span class="cat-card-stock no-stock">Sin stock</span>`;
+      : stockQty <= 0
+        ? `<span class="cat-card-stock no-stock">Sin stock</span>`
+        : stockQty <= stockMin
+          ? `<span class="cat-card-stock low-stock">Stock bajo</span>`
+          : `<span class="cat-card-stock in-stock">En stock</span>`;
 
     const resolvedImageUrl = product.imageUrl
       ? product.imageUrl.startsWith("/")

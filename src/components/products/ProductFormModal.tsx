@@ -11,6 +11,7 @@ export type ProductFormValues = {
   brand: string;
   unitPerBox: number;
   stockMin: number;
+  initialStock?: number;
   categoryId: string;
   imageUrl?: string | null;
 };
@@ -32,6 +33,7 @@ const initialValues: ProductFormValues = {
   brand: "",
   unitPerBox: 1,
   stockMin: 0,
+  initialStock: 0,
   categoryId: "",
   imageUrl: null,
 };
@@ -236,6 +238,18 @@ export function ProductFormModal({
               className="w-full rounded-md border border-luminoa-line px-3 py-2 text-sm outline-none focus:border-luminoa-teal focus:ring-2 focus:ring-luminoa-teal/20"
             />
           </FormField>
+
+          {!isEditMode ? (
+            <FormField label="Stock inicial">
+              <input
+                type="number"
+                min="0"
+                value={values.initialStock ?? 0}
+                onChange={(event) => updateValue("initialStock", Number(event.target.value))}
+                className="w-full rounded-md border border-luminoa-line px-3 py-2 text-sm outline-none focus:border-luminoa-teal focus:ring-2 focus:ring-luminoa-teal/20"
+              />
+            </FormField>
+          ) : null}
 
           <div className="sm:col-span-2">
             <p className="mb-2 block text-sm font-medium text-slate-800">Imagen del producto</p>

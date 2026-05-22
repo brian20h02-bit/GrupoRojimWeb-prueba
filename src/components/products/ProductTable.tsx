@@ -6,9 +6,11 @@ type ProductTableProps = {
   canManage: boolean;
   onEdit: (product: ProductSummary) => void;
   onDeactivate: (product: ProductSummary) => void;
+  onReactivate: (product: ProductSummary) => void;
+  onDelete: (product: ProductSummary) => void;
 };
 
-export function ProductTable({ products, canManage, onEdit, onDeactivate }: ProductTableProps) {
+export function ProductTable({ products, canManage, onEdit, onDeactivate, onReactivate, onDelete }: ProductTableProps) {
   if (products.length === 0) {
     return (
       <section className="rounded-lg border border-luminoa-line bg-white p-8 text-center text-sm text-luminoa-muted">
@@ -58,21 +60,41 @@ export function ProductTable({ products, canManage, onEdit, onDeactivate }: Prod
                 {canManage ? (
                   <td className="whitespace-nowrap px-4 py-3">
                     <div className="flex gap-2">
-                      <button
-                        type="button"
-                        onClick={() => onEdit(product)}
-                        className="rounded-md border border-luminoa-line px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:bg-slate-50"
-                      >
-                        Editar
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => onDeactivate(product)}
-                        disabled={!product.active}
-                        className="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        Desactivar
-                      </button>
+                      {product.active ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => onEdit(product)}
+                            className="rounded-md border border-luminoa-line px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:bg-slate-50"
+                          >
+                            Editar
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => onDeactivate(product)}
+                            className="rounded-md border border-orange-200 px-3 py-1.5 text-xs font-medium text-orange-700 transition hover:bg-orange-50"
+                          >
+                            Deshabilitar
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => onReactivate(product)}
+                            className="rounded-md border border-green-200 px-3 py-1.5 text-xs font-medium text-green-700 transition hover:bg-green-50"
+                          >
+                            Habilitar
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => onDelete(product)}
+                            className="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-50"
+                          >
+                            Eliminar
+                          </button>
+                        </>
+                      )}
                     </div>
                   </td>
                 ) : null}

@@ -1005,6 +1005,12 @@
   border: 1px solid rgba(220, 38, 38, 0.20);
 }
 
+.low-stock {
+  color: #b45309;
+  background: rgba(217, 119, 6, 0.09);
+  border: 1px solid rgba(217, 119, 6, 0.22);
+}
+
 /* Card CTA button */
 .cat-card-cta {
   display: inline-flex;

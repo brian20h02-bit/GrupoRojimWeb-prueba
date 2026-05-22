@@ -40,7 +40,7 @@ async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
     }
 
     try {
-      const product = await createProduct(parsedBody.data);
+      const product = await createProduct(parsedBody.data, req.user.id);
       return res.status(201).json({ product });
     } catch (error) {
       return handleProductMutationError(error, res, "Unable to create product.");

@@ -133,23 +133,36 @@ export async function getProductById(id: string) {
   return serializeProduct(product, stockByProductId.get(product.id) ?? 0);
 }
 
-export function createProduct(input: CreateProductInput) {
-  return prisma.product
-    .create({
+export async function createProduct(input: CreateProductInput, userId: string) {
+  const product = await prisma.product.create({
+    data: {
+      name: input.name,
+      code: input.code,
+      description: input.description,
+      price: new PrismaNamespace.Decimal(input.price),
+      brand: input.brand,
+      unitPerBox: input.unitPerBox,
+      stockMin: input.stockMin,
+      active: input.active ?? true,
+      categoryId: input.categoryId,
+    },
+    select: productSelect,
+  });
+
+  const initialStock = input.initialStock ?? 0;
+
+  if (initialStock > 0) {
+    await prisma.stockMovement.create({
       data: {
-        name: input.name,
-        code: input.code,
-        description: input.description,
-        price: new PrismaNamespace.Decimal(input.price),
-        brand: input.brand,
-        unitPerBox: input.unitPerBox,
-        stockMin: input.stockMin,
-        active: input.active ?? true,
-        categoryId: input.categoryId,
+        productId: product.id,
+        type: "ENTRADA",
+        quantity: initialStock,
+        userId,
       },
-      select: productSelect,
-    })
-    .then((product) => serializeProduct(product, 0));
+    });
+  }
+
+  return serializeProduct(product, initialStock);
 }
 
 export function updateProduct(id: string, input: UpdateProductInput) {
@@ -178,4 +191,15 @@ export function updateProduct(id: string, input: UpdateProductInput) {
 
 export function deactivateProduct(id: string) {
   return updateProduct(id, { active: false });
+}
+
+export function reactivateProduct(id: string) {
+  return updateProduct(id, { active: true });
+}
+
+export async function hardDeleteProduct(id: string) {
+  return prisma.$transaction(async (tx) => {
+    await tx.stockMovement.deleteMany({ where: { productId: id } });
+    return tx.product.delete({ where: { id } });
+  });
 }

@@ -1,7 +1,7 @@
 import type { NextApiResponse } from "next";
 import { Role } from "@prisma/client";
 import { requireRole, withAuth } from "@/services/auth";
-import { deactivateProduct, getProductById, updateProduct } from "@/services/products";
+import { getProductById, hardDeleteProduct, reactivateProduct, updateProduct } from "@/services/products";
 import type { AuthenticatedNextApiRequest } from "@/types/api";
 import { productIdSchema, updateProductSchema } from "@/validation/products";
 import { handleProductMutationError } from "./index";
@@ -50,20 +50,33 @@ async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
     }
   }
 
+  if (req.method === "PATCH") {
+    if (!requireRole(req, res, [Role.ADMIN])) {
+      return;
+    }
+
+    try {
+      const product = await reactivateProduct(id);
+      return res.status(200).json({ product });
+    } catch (error) {
+      return handleProductMutationError(error, res, "Unable to reactivate product.");
+    }
+  }
+
   if (req.method === "DELETE") {
     if (!requireRole(req, res, [Role.ADMIN])) {
       return;
     }
 
     try {
-      const product = await deactivateProduct(id);
-      return res.status(200).json({ product });
+      await hardDeleteProduct(id);
+      return res.status(200).json({ message: "Producto eliminado permanentemente." });
     } catch (error) {
-      return handleProductMutationError(error, res, "Unable to deactivate product.");
+      return handleProductMutationError(error, res, "Unable to delete product.");
     }
   }
 
-  res.setHeader("Allow", "GET, PUT, DELETE");
+  res.setHeader("Allow", "GET, PUT, PATCH, DELETE");
   return res.status(405).json({ error: "Method not allowed." });
 }
 

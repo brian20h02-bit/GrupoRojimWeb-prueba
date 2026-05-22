@@ -28,6 +28,7 @@ export const createProductSchema = z.object({
   brand: z.string().trim().min(2, "La marca debe tener al menos 2 caracteres."),
   unitPerBox: positiveIntSchema,
   stockMin: nonNegativeIntSchema.default(0),
+  initialStock: nonNegativeIntSchema.default(0),
   active: z.boolean().optional(),
   imageUrl: z.string().min(1).nullable().optional(),
   categoryId: z.string().uuid("El id de la categoria no es valido."),
