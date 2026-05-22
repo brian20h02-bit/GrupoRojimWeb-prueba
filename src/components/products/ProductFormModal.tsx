@@ -131,9 +131,9 @@ export function ProductFormModal({
         });
         finalImageUrl = url;
       } catch {
-        setLocalError("No se pudo subir la imagen. Intentá de nuevo.");
-        setIsUploading(false);
-        return;
+        // Image upload failed — continue creating the product without image
+        finalImageUrl = null;
+        setLocalError("La imagen no se pudo subir, pero el producto se guardará sin imagen.");
       } finally {
         setIsUploading(false);
       }

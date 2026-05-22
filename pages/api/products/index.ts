@@ -16,8 +16,13 @@ async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
       });
     }
 
-    const result = await listProducts(parsedQuery.data);
-    return res.status(200).json(result);
+    try {
+      const result = await listProducts(parsedQuery.data);
+      return res.status(200).json(result);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "No se pudieron cargar los productos." });
+    }
   }
 
   if (req.method === "POST") {

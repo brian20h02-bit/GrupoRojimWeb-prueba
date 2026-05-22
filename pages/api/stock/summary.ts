@@ -9,8 +9,13 @@ async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
     return res.status(405).json({ error: "Method not allowed." });
   }
 
-  const summary = await getStockSummary();
-  return res.status(200).json(summary);
+  try {
+    const summary = await getStockSummary();
+    return res.status(200).json(summary);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "No se pudo cargar el resumen de stock." });
+  }
 }
 
 export default withAuth(handler);

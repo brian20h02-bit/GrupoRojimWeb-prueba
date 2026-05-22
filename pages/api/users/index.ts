@@ -16,8 +16,13 @@ async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
   }
 
   if (req.method === "GET") {
-    const users = await listUsers();
-    return res.status(200).json({ users });
+    try {
+      const users = await listUsers();
+      return res.status(200).json({ users });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "No se pudieron cargar los usuarios." });
+    }
   }
 
   if (req.method === "POST") {

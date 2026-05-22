@@ -7,8 +7,13 @@ import { createCategorySchema } from "@/validation/categories";
 
 async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
-    const categories = await listCategories();
-    return res.status(200).json({ categories });
+    try {
+      const categories = await listCategories();
+      return res.status(200).json({ categories });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "No se pudieron cargar las categorías." });
+    }
   }
 
   if (req.method === "POST") {

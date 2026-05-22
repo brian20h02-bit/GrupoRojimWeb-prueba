@@ -19,8 +19,13 @@ async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
     });
   }
 
-  const result = await listStockHistory(parsedQuery.data);
-  return res.status(200).json(result);
+  try {
+    const result = await listStockHistory(parsedQuery.data);
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "No se pudo cargar el historial." });
+  }
 }
 
 export default withAuth(handler);
