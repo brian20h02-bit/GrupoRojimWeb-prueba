@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { PrismaClient, Role, StockMovementType } from "@prisma/client";
 
 const prisma = new PrismaClient();
