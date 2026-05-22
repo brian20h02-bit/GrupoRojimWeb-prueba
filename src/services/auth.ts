@@ -1,6 +1,6 @@
 import type { NextApiResponse } from "next";
 import type { Role } from "@prisma/client";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { prisma } from "@/lib/prisma";
 import type { AuthenticatedNextApiRequest, AuthenticatedUser } from "@/types/api";
