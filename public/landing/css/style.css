@@ -2519,3 +2519,207 @@ NOSOTROS SECTION
   .arrow-prev { left: 6px; }
   .arrow-next { right: 6px; }
 }
+
+
+/* ================================================================
+   PREMIUM MOTION SYSTEM — Visual enhancements
+   ================================================================ */
+
+/* ── Navbar compact state ────────────────────────────────────── */
+.nav-container {
+  transition: height 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar.compact .nav-container {
+  height: 60px;
+}
+
+.navbar.compact .logo-img {
+  max-height: 36px;
+  max-width: 100px;
+}
+
+/* ── Hero: canvas particles ─────────────────────────────────── */
+#hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.75;
+  will-change: auto;
+}
+
+/* ── Hero: ambient glow blob ────────────────────────────────── */
+.hero-ambient-glow {
+  position: absolute;
+  width: clamp(400px, 55vw, 780px);
+  height: clamp(400px, 55vw, 780px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%,
+    rgba(245, 100, 0, 0.22) 0%,
+    rgba(200, 80, 0, 0.08) 45%,
+    transparent 70%);
+  top: -5%;
+  left: -12%;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: ambientDrift 9s ease-in-out infinite alternate;
+}
+
+@keyframes ambientDrift {
+  0%   { transform: translate(0,     0)     scale(1.00); opacity: 0.75; }
+  33%  { transform: translate(3%,  3%)    scale(1.07); opacity: 0.90; }
+  66%  { transform: translate(-2%,  5%)   scale(0.96); opacity: 0.65; }
+  100% { transform: translate(4%, -2%)    scale(1.04); opacity: 0.80; }
+}
+
+/* ── Hero visual: allow float shadow ───────────────────────── */
+.hero-visual {
+  overflow: visible;
+}
+
+.hero-image-wrapper {
+  will-change: transform;
+}
+
+/* ── Hero glow breathe ──────────────────────────────────────── */
+.hero-image-glow {
+  background: radial-gradient(ellipse at center,
+    rgba(245, 120, 0, 0.32) 0%,
+    transparent 66%);
+  animation: glowBreathe 4.5s ease-in-out infinite alternate;
+  will-change: opacity, transform;
+}
+
+@keyframes glowBreathe {
+  0%   { opacity: 0.55; transform: scale(0.94); }
+  100% { opacity: 1.00; transform: scale(1.08); }
+}
+
+/* ── Floating card refinement ───────────────────────────────── */
+.hero-float-card {
+  /* override base: thicker glow border */
+  border-color: rgba(245, 166, 35, 0.35);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(245, 166, 35, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── Badge dot: outer ring pulse ────────────────────────────── */
+.badge-dot {
+  /* Builds on existing 'pulse' keyframe — adds outer ring */
+  box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.55);
+  animation: badgeRing 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes badgeRing {
+  0%   { box-shadow: 0 0 0 0   rgba(245, 166, 35, 0.55); transform: scale(1);   }
+  60%  { box-shadow: 0 0 0 6px rgba(245, 166, 35, 0.00); transform: scale(1.08); }
+  100% { box-shadow: 0 0 0 0   rgba(245, 166, 35, 0.00); transform: scale(1);   }
+}
+
+/* ── Stats counter: stable width during animation ───────────── */
+.stat-number {
+  min-width: 3.2ch;
+  display: inline-block;
+}
+
+/* ── CTA button: glow halo on hover ─────────────────────────── */
+.btn-cta {
+  position: relative;
+  isolation: isolate;
+}
+
+.btn-cta::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: calc(var(--radius-md) + 3px);
+  background: radial-gradient(ellipse, rgba(245, 140, 0, 0.42) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 350ms ease;
+  z-index: -1;
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.btn-cta:hover::before {
+  opacity: 1;
+}
+
+/* ── Hero highlight: animated underline ─────────────────────── */
+.hero-highlight::after {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--color-accent) 20%,
+    var(--color-amber-glow) 80%,
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmerLine 3s linear infinite;
+}
+
+@keyframes shimmerLine {
+  0%   { background-position: 200% 0; opacity: 0.5; }
+  50%  { opacity: 0.9; }
+  100% { background-position: -200% 0; opacity: 0.5; }
+}
+
+/* ── Servicios section: premium top label ────────────────────── */
+.servicios-section::before {
+  content: 'Nuestros Servicios';
+  display: none; /* label added via HTML if desired */
+}
+
+/* ── Servicios panel: richer hover state ────────────────────── */
+.servicios-panel:hover .sp-num {
+  color: var(--color-accent);
+  transition: color 0.4s ease;
+}
+
+/* ── Footer: premium bar ────────────────────────────────────── */
+.footer {
+  background: linear-gradient(to right, #120600, #1a0f05, #120600);
+  padding: 1.75rem var(--space-lg);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Global section spacing: more breathing room ────────────── */
+.nos-section {
+  --nos-section-gap: clamp(5rem, 10vw, 8rem);
+}
+
+/* ── Responsive: disable heavy effects on mobile ────────────── */
+@media (max-width: 768px) {
+  #hero-particles {
+    opacity: 0.45; /* reduce density on small screens */
+  }
+
+  .hero-ambient-glow {
+    width: 280px;
+    height: 280px;
+    opacity: 0.6;
+  }
+
+  .btn-cta::before {
+    display: none; /* skip glow halo on mobile */
+  }
+
+  .hero-float-card {
+    bottom: -10px;
+    left: -10px;
+    padding: 10px 14px;
+  }
+}
+

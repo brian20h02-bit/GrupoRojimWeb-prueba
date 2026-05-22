@@ -54,6 +54,7 @@ export default function HomePage({ landingContent }: HomePageProps) {
       <Script src="/landing/js/config.js" strategy="beforeInteractive" />
       <Script src="/landing/js/main.js" strategy="afterInteractive" />
       <Script src="/landing/js/nosotros.js" strategy="afterInteractive" />
+      <Script src="/landing/js/premium-motion.js" strategy="afterInteractive" />
     </>
   );
 }
@@ -95,7 +96,7 @@ function PublicNavbar() {
             Log in
           </Link>
           <Link href="/login" className="btn btn-primary" id="btn-register">
-            Registrarse
+            Hablar con un asesor
           </Link>
         </div>
 
@@ -129,7 +130,7 @@ function PublicNavbar() {
             Log in
           </Link>
           <Link href="/login" className="btn btn-primary btn-full" id="mobile-btn-register">
-            Registrarse
+            Hablar con un asesor
           </Link>
         </div>
       </div>

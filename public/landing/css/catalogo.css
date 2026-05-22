@@ -1819,3 +1819,275 @@
 .cat-card-visual--img .cat-card-stock {
   color: #fff;
 }
+
+
+/* ================================================================
+   CATALOGO PREMIUM — Enhanced hovers, skeletons, sticky search
+   ================================================================ */
+
+/* ── Card: deeper hover glow + Ken Burns on product image ────── */
+.cat-card {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.25s ease;
+}
+
+.cat-card:hover {
+  box-shadow:
+    var(--cat-shadow-lg),
+    0 0 0 1px rgba(224, 124, 10, 0.18),
+    0 0 24px rgba(224, 124, 10, 0.10);
+}
+
+/* Product image Ken Burns on card hover */
+.cat-card-visual img.cat-card-img {
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cat-card:hover .cat-card-img {
+  transform: scale(1.06);
+}
+
+/* Icon: smoother spring scale */
+.cat-card:hover .cat-card-icon {
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 12px rgba(224, 124, 10, 0.35));
+}
+
+/* ── Card badge: subtle shimmer ──────────────────────────────── */
+.cat-card-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.cat-card-badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  animation: badgeShimmer 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes badgeShimmer {
+  0%   { left: -100%; opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { left: 160%; opacity: 1; }
+  51%  { opacity: 0; }
+  100% { left: 160%; opacity: 0; }
+}
+
+/* ── Loading skeletons ────────────────────────────────────────── */
+.cat-skeleton {
+  background: linear-gradient(90deg,
+    var(--cat-bg-alt) 25%,
+    rgba(244, 239, 230, 0.5) 50%,
+    var(--cat-bg-alt) 75%);
+  background-size: 200% 100%;
+  animation: skeletonWave 1.6s ease-in-out infinite;
+  border-radius: var(--cat-radius-md);
+}
+
+@keyframes skeletonWave {
+  0%   { background-position:  200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.cat-card-skeleton {
+  background: var(--cat-bg-card);
+  border: 1px solid var(--cat-border);
+  border-radius: var(--cat-radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.cat-card-skeleton .skel-visual {
+  height: 200px;
+  background: linear-gradient(90deg,
+    #ede8e0 25%, #f5f0e8 50%, #ede8e0 75%);
+  background-size: 200% 100%;
+  animation: skeletonWave 1.6s ease-in-out infinite;
+}
+
+.cat-card-skeleton .skel-body {
+  padding: 1.2rem 1.3rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.cat-card-skeleton .skel-line {
+  height: 0.75rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg,
+    #ede8e0 25%, #f5f0e8 50%, #ede8e0 75%);
+  background-size: 200% 100%;
+  animation: skeletonWave 1.6s ease-in-out infinite;
+}
+
+.cat-card-skeleton .skel-line.short { width: 55%; }
+.cat-card-skeleton .skel-line.long  { width: 100%; }
+.cat-card-skeleton .skel-line.mid   { width: 75%; }
+.cat-card-skeleton .skel-line.price { height: 1.1rem; width: 40%; margin-top: 0.3rem; }
+
+/* ── Sticky search bar ────────────────────────────────────────── */
+.cat-search-sticky {
+  position: sticky;
+  top: 68px;
+  z-index: 90;
+  background: rgba(250, 247, 242, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cat-border);
+  padding: 0.75rem 0;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.cat-search-sticky.shadow-active {
+  box-shadow: 0 4px 20px rgba(56, 34, 26, 0.10);
+}
+
+/* ── Filter sidebar: active filter badges ─────────────────────── */
+.cat-filter-active-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0.25rem;
+}
+
+.cat-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cat-orange);
+  background: var(--cat-orange-tint);
+  border: 1px solid rgba(224, 124, 10, 0.22);
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.cat-filter-chip:hover {
+  background: var(--cat-orange-mid);
+  border-color: rgba(224, 124, 10, 0.40);
+}
+
+.cat-filter-chip svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.7;
+}
+
+/* ── Filter checkboxes: premium style ────────────────────────── */
+.filter-checkbox {
+  accent-color: var(--cat-orange);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* ── Sidebar inner: premium border + hover ───────────────────── */
+.sidebar-inner {
+  transition: box-shadow 0.3s ease;
+}
+
+.sidebar-inner:hover {
+  box-shadow: var(--cat-shadow-md);
+}
+
+/* ── Product detail modal: premium treatment ─────────────────── */
+.cat-modal-overlay {
+  background: rgba(26, 15, 5, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Back to top: floating ────────────────────────────────────── */
+.cat-back-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 200;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--cat-orange);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(224, 124, 10, 0.35);
+  transform: translateY(80px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.cat-back-top.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cat-back-top:hover {
+  background: var(--cat-orange-hov);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(224, 124, 10, 0.45);
+}
+
+.cat-back-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Empty state ──────────────────────────────────────────────── */
+.cat-empty-state {
+  text-align: center;
+  padding: 5rem 2rem;
+  grid-column: 1 / -1;
+}
+
+.cat-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.35;
+}
+
+.cat-empty-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cat-brown);
+  margin-bottom: 0.5rem;
+}
+
+.cat-empty-sub {
+  font-size: 0.9rem;
+  color: var(--cat-brown-light);
+}
+
+/* ── Smooth page-in transition ────────────────────────────────── */
+.page-catalog {
+  animation: pageIn 0.45s ease both;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
