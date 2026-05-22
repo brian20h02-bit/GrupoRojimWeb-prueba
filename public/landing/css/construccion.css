@@ -915,33 +915,67 @@
     position: relative;
     height: auto;
     flex-direction: column;
-    padding: 80px 5vw 60px;
-    gap: 40px;
+    padding: 60px 5vw 50px;
+    gap: 28px;
   }
   .stx-prog-track,
-  .stx-dot-nav,
   .stx-counter,
   .stx-story-scroll-cue { display: none; }
 
-  /* Text panels: stack and show all on mobile */
-  .stx-texts-wrap { position: relative; height: auto; width: 100%; }
+  /* Dot nav → horizontal step indicator (tabbed navigation) */
+  .stx-dot-nav {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    right: auto; top: auto;
+    transform: none;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0;
+  }
+  .stx-dot {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.10);
+    color: rgba(255,255,255,.32);
+    font-size: .58rem; font-weight: 700;
+    letter-spacing: .02em;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .stx-dot:hover { transform: none; background: rgba(255,255,255,.09); }
+  .stx-dot.is-active {
+    transform: none;
+    background: rgba(245,166,35,.12);
+    border-color: rgba(245,166,35,.55);
+    color: var(--color-accent, #F5A623);
+    box-shadow: 0 0 16px rgba(245,166,35,.2);
+  }
+  .stx-dot-lbl { display: none; }
+
+  /* Text panels: one at a time, controlled by JS via .is-active */
+  .stx-texts-wrap {
+    position: relative; height: auto; width: 100%;
+    flex-direction: column; align-items: stretch;
+  }
   .stx-stage-text {
     position: relative; top: auto;
     transform: none; opacity: 0;
     display: none;
   }
-  .stx-stage-text.is-active { opacity: 1; display: flex; }
+  .stx-stage-text.is-active {
+    opacity: 1;
+    display: flex;
+    animation: stxPanelIn 0.38s cubic-bezier(.25,.46,.45,.94) both;
+  }
 
   /* Scene: full width on mobile */
   .stx-scene-wrap { width: 100%; }
-  .stx-scene-svg { max-height: 70vw; }
+  .stx-scene-svg { max-height: 72vw; border-radius: 10px; }
 
-  /* All SVG layers visible on mobile (JS fallback handles it) */
-  .stl-found,
-  .stl-struct,
-  .stl-elec,
-  .stl-finish,
-  .stl-final { opacity: 1 !important; }
+  /* SVG layers: animated by JS IntersectionObserver, not forced by CSS */
+  /* (base CSS keeps them at opacity:0; JS sets inline opacity:1 on scroll) */
 
   .stx-form-section { padding: 80px 5vw; }
   .stx-form-wrapper { grid-template-columns: 1fr; gap: 48px; }
@@ -962,75 +996,90 @@
   .stx-submit-btn { width: 100%; justify-content: center; }
 }
 
-/* ============================================
-   STORY SECTION — EXPANDED BREAKPOINT (≤900px)
-   Covers landscape phones (portrait ≤768px is
-   already handled above; this adds landscape
-   phone + small-tablet coverage up to 900px).
-   All stages are shown stacked — no JS needed.
-   ============================================ */
-@media (max-width: 900px) {
-  /* Disable sticky scroll, go to linear layout */
+/* ============================================================
+   STORY SECTION — LANDSCAPE PHONES + SMALL TABLETS (769–900px)
+   The 768px block handles ≤768px. This block covers the gap
+   769px–900px (landscape phones, small tablets) where the
+   desktop sticky-scroll layout is also unusable.
+   Same tabbed architecture as the 768px block.
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 900px) {
+  /* Structural: disable the 400vh sticky pin */
   .stx-story { height: auto; }
   .stx-story-inner {
     position: relative;
     height: auto;
     flex-direction: column;
-    padding: 80px 5vw 60px;
-    gap: 40px;
+    padding: 60px 5vw 50px;
+    gap: 28px;
   }
 
-  /* Hide JS-driven chrome */
+  /* Hide desktop-only chrome */
   .stx-prog-track,
-  .stx-dot-nav,
   .stx-counter,
   .stx-story-scroll-cue { display: none; }
 
-  /* Text wrap: auto height, full width */
-  .stx-texts-wrap {
+  /* Dot nav: horizontal step indicator */
+  .stx-dot-nav {
+    display: flex;
+    flex-direction: row;
     position: relative;
-    height: auto;
+    right: auto; top: auto;
+    transform: none;
+    justify-content: center;
+    gap: 8px;
     width: 100%;
+    padding: 0;
   }
+  .stx-dot {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.10);
+    color: rgba(255,255,255,.32);
+    font-size: .58rem; font-weight: 700;
+    letter-spacing: .02em;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .stx-dot:hover { transform: none; background: rgba(255,255,255,.09); }
+  .stx-dot.is-active {
+    transform: none;
+    background: rgba(245,166,35,.12);
+    border-color: rgba(245,166,35,.55);
+    color: var(--color-accent, #F5A623);
+    box-shadow: 0 0 16px rgba(245,166,35,.2);
+  }
+  .stx-dot-lbl { display: none; }
 
-  /* Show ALL stages stacked — no JS dependency */
+  /* Text wrap: column container */
+  .stx-texts-wrap {
+    position: relative; height: auto; width: 100%;
+    flex-direction: column; align-items: stretch;
+  }
+  /* Stage text: hidden until .is-active (same pattern as ≤768px block) */
   .stx-stage-text {
-    position: relative !important;
-    top: auto !important;
-    transform: none !important;
-    opacity: 1 !important;
-    display: flex !important;
+    position: relative; top: auto;
+    transform: none; opacity: 0;
+    display: none;
+  }
+  .stx-stage-text.is-active {
+    opacity: 1;
+    display: flex;
+    animation: stxPanelIn 0.38s cubic-bezier(.25,.46,.45,.94) both;
   }
 
-  /* Visual separator between stages */
-  .stx-stage-text + .stx-stage-text {
-    margin-top: 2.5rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
-  }
+  /* Scene: full width */
+  .stx-scene-wrap { width: 100%; }
+  .stx-scene-svg { max-height: 55vw; border-radius: 10px; }
 
-  /* Scene: full width, proportional height */
-  .stx-scene-wrap {
-    width: 100%;
-  }
-  .stx-scene-svg {
-    max-height: 70vw;
-  }
-
-  /* All SVG layers visible */
-  .stl-found,
-  .stl-struct,
-  .stl-elec,
-  .stl-finish,
-  .stl-final { opacity: 1 !important; }
-
-  /* Stage pill labels: wrap on small screens */
+  /* Stage pill labels: wrap, centered */
   .stx-lpills {
     flex-wrap: wrap;
-    gap: 6px;
+    justify-content: center;
+    gap: 5px;
   }
   .stx-lpill {
-    font-size: 0.65rem;
-    padding: 5px 10px;
+    font-size: .58rem;
+    padding: 4px 9px;
   }
 }

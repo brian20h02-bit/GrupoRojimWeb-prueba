@@ -11,7 +11,7 @@
      CONSTANTS
   ───────────────────────────────────────────────────────── */
   var TOTAL_STAGES = 5;
-  var IS_MOBILE    = window.matchMedia('(max-width: 768px)').matches;
+  var IS_MOBILE    = window.matchMedia('(max-width: 900px)').matches;
   var SVG_W        = 560; /* SVG viewBox width for finish rect animation */
 
   var STAGE_NAMES = ['Planificación', 'Estructura', 'Instalaciones', 'Terminaciones', 'Resultado'];
@@ -262,11 +262,36 @@
       );
       obs.observe(sceneSvg);
     }
-    /* Show all text panels stacked (mobile layout handled by CSS) */
-    textPanels.forEach(function (p) { p.classList.add('is-active'); });
-  }
+  /* Ensure stage 0 is marked active (HTML already has it but reset state) */
+  activateTextStage(0);
+}
 
-  /* ─────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────
+     MOBILE: tap + swipe stage navigation
+  ───────────────────────────────────────────────────── */
+  function initMobileTabs() {
+    if (!IS_MOBILE) return;
+
+    /* Label dots with stage numbers and wire click → activateTextStage */
+    dots.forEach(function (dot, i) {
+      dot.innerHTML = '<span aria-hidden="true">' + String(i + 1).padStart(2, '0') + '</span>';
+      dot.addEventListener('click', function () { activateTextStage(i); });
+    });
+
+    /* Swipe left/right on the text panel to move between stages */
+    var textsWrap = document.getElementById('stx-texts-wrap');
+    if (!textsWrap) return;
+    var startX = 0;
+    textsWrap.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    textsWrap.addEventListener('touchend', function (e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) < 48) return; /* ignore micro-swipes */
+      if (diff > 0 && currentStage < TOTAL_STAGES - 1) activateTextStage(currentStage + 1);
+      else if (diff < 0 && currentStage > 0) activateTextStage(currentStage - 1);
+    }, { passive: true });
+  }
      REVEAL ELEMENTS (form / cta sections)
   ───────────────────────────────────────────────────────── */
   function initRevealEls() {
@@ -368,6 +393,7 @@
 
     if (IS_MOBILE) {
       initMobileScene();
+      initMobileTabs();
     } else {
       initScrollStory();
       initDotNav();
