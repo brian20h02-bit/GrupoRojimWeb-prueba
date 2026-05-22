@@ -9,7 +9,7 @@
 :root {
   --cat-bg:          #faf7f2;   /* warm cream — dominant bg */
   --cat-bg-alt:      #f4efe6;   /* slightly deeper cream */
-  --cat-bg-card:     #ffffff;   /* card bg */
+  --cat-bg-card:     #fefcf9;   /* card bg — warm white */
   --cat-bg-sidebar:  #ffffff;   /* sidebar bg */
 
   --cat-brown:       #38221a;   /* deep brown — headlines */
@@ -29,7 +29,7 @@
   --cat-shadow-xs:   0 1px 4px  rgba(56, 34, 26, 0.06);
   --cat-shadow-sm:   0 2px 12px rgba(56, 34, 26, 0.08);
   --cat-shadow-md:   0 8px 32px rgba(56, 34, 26, 0.11);
-  --cat-shadow-lg:   0 20px 56px rgba(56, 34, 26, 0.14);
+  --cat-shadow-lg:   0 20px 60px rgba(56, 34, 26, 0.17);
 
   --cat-radius-sm:   8px;
   --cat-radius-md:   14px;
@@ -837,14 +837,14 @@
 .cat-card {
   background: var(--cat-bg-card);
   border: 1px solid var(--cat-border);
-  border-radius: var(--cat-radius-lg);
+  border-radius: var(--cat-radius-xl);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   transition:
-    transform 0.32s ease,
-    box-shadow 0.32s ease,
-    border-color 0.22s ease;
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.25s ease;
   cursor: pointer;
 }
 
@@ -873,12 +873,12 @@
 .cat-card-icon {
   width: 88px;
   height: 88px;
-  transition: transform 0.45s ease, opacity 0.3s ease;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
   z-index: 1;
 }
 
 .cat-card:hover .cat-card-icon {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 /* Visual footer: badge + status */
