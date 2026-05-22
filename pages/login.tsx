@@ -148,7 +148,7 @@ export default function LoginPage() {
 
           {/* Back to site */}
           <a
-            href="http://localhost:3001"
+            href="/"
             className="absolute top-6 right-6 text-[0.8rem] font-semibold flex items-center gap-1 transition-opacity hover:opacity-100"
             style={{ color: "#6b5040", opacity: 0.6 }}
           >
