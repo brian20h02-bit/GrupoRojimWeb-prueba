@@ -147,8 +147,31 @@ export function ProductsView() {
         body: JSON.stringify(values),
       });
 
+      let finalProduct = updated.product;
+
+      // Adjust stock if value changed
+      if (values.stock !== undefined && values.stock !== editingProduct.stock) {
+        const currentStock = editingProduct.stock;
+        const targetStock = values.stock;
+        const diff = targetStock - currentStock;
+
+        if (diff > 0) {
+          await apiFetch(`/api/stock/entries`, {
+            method: "POST",
+            body: JSON.stringify({ productId: editingProduct.id, quantity: diff, notes: "Ajuste manual desde edicion" }),
+          });
+        } else {
+          await apiFetch(`/api/stock/exits`, {
+            method: "POST",
+            body: JSON.stringify({ productId: editingProduct.id, quantity: Math.abs(diff), notes: "Ajuste manual desde edicion" }),
+          });
+        }
+
+        finalProduct = { ...finalProduct, stock: targetStock, belowMinStock: targetStock < finalProduct.stockMin };
+      }
+
       setProducts((current) =>
-        current.map((item) => (item.id === editingProduct.id ? updated.product : item)),
+        current.map((item) => (item.id === editingProduct.id ? finalProduct : item)),
       );
       setIsModalOpen(false);
       setEditingProduct(null);

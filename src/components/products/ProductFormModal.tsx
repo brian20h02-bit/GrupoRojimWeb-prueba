@@ -12,6 +12,7 @@ export type ProductFormValues = {
   unitPerBox: number;
   stockMin: number;
   initialStock?: number;
+  stock?: number;
   categoryId: string;
   imageUrl?: string | null;
 };
@@ -57,6 +58,7 @@ export function ProductFormModal({
           brand: initialProduct.brand,
           unitPerBox: initialProduct.unitPerBox,
           stockMin: initialProduct.stockMin,
+          stock: initialProduct.stock,
           categoryId: initialProduct.categoryId,
           imageUrl: initialProduct.imageUrl ?? null,
         }
@@ -249,7 +251,17 @@ export function ProductFormModal({
                 className="w-full rounded-md border border-luminoa-line px-3 py-2 text-sm outline-none focus:border-luminoa-teal focus:ring-2 focus:ring-luminoa-teal/20"
               />
             </FormField>
-          ) : null}
+          ) : (
+            <FormField label="Stock" hint="Modificalo para ajustar el inventario">
+              <input
+                type="number"
+                min="0"
+                value={values.stock ?? 0}
+                onChange={(event) => updateValue("stock", Number(event.target.value))}
+                className="w-full rounded-md border border-luminoa-line px-3 py-2 text-sm outline-none focus:border-luminoa-teal focus:ring-2 focus:ring-luminoa-teal/20"
+              />
+            </FormField>
+          )}
 
           <div className="sm:col-span-2">
             <p className="mb-2 block text-sm font-medium text-slate-800">Imagen del producto</p>
@@ -340,10 +352,13 @@ export function ProductFormModal({
   );
 }
 
-function FormField({ label, children }: { label: string; children: React.ReactNode }) {
+function FormField({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
     <label className="block text-sm font-medium text-slate-800">
-      {label}
+      <span className="flex items-baseline gap-2">
+        {label}
+        {hint ? <span className="text-xs font-normal text-luminoa-muted">{hint}</span> : null}
+      </span>
       <span className="mt-2 block">{children}</span>
     </label>
   );
