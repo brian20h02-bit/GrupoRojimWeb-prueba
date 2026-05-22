@@ -334,60 +334,6 @@
 
 
   /* ──────────────────────────────────────────────────────────────
-     10. NOSOTROS SECTION — Timeline + duo cards reveal
-  ────────────────────────────────────────────────────────────── */
-  function initNosotrosReveal() {
-    if (prefersReduced) return;
-    const nos = document.getElementById('nosotros');
-    if (!nos) return;
-
-    let fired = false;
-    const mo = new MutationObserver(() => {
-      if (!fired && nos.classList.contains('open')) {
-        fired = true;
-        mo.disconnect();
-
-        /* Nosotros hero block */
-        gsap.from('#nos-hero-eyebrow, #nos-hero-title, #nos-hero-sub', {
-          y: 32, opacity: 0, duration: 0.9, stagger: 0.14,
-          ease: 'power3.out', delay: 0.3
-        });
-        gsap.from('#nos-hero-stats .nos-stat', {
-          y: 20, opacity: 0, duration: 0.7, stagger: 0.12,
-          ease: 'power3.out', delay: 0.7
-        });
-        gsap.from('#nos-hero-visual', {
-          scale: 0.9, opacity: 0, duration: 1.1,
-          ease: 'power3.out', delay: 0.4
-        });
-
-        /* Duo cards stagger */
-        gsap.from('.nos-duo-card', {
-          y: 40, opacity: 0, duration: 0.9, stagger: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '#nos-duo', start: 'top 80%' }
-        });
-
-        /* Diff grid */
-        gsap.from('.nos-diff-item', {
-          y: 28, opacity: 0, duration: 0.7, stagger: 0.08,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '#nos-diff-grid', start: 'top 82%' }
-        });
-
-        /* Valores */
-        gsap.from('.nos-valor-item', {
-          scale: 0.85, opacity: 0, duration: 0.5, stagger: 0.07,
-          ease: 'back.out(1.4)',
-          scrollTrigger: { trigger: '#nos-valores-grid', start: 'top 84%' }
-        });
-      }
-    });
-    mo.observe(nos, { attributes: true, attributeFilter: ['class'] });
-  }
-
-
-  /* ──────────────────────────────────────────────────────────────
      INIT
   ────────────────────────────────────────────────────────────── */
   function init() {
@@ -400,7 +346,7 @@
     initServiciosReveal();
     initButtonMagnetic();
     initAmbientGlowParallax();
-    initNosotrosReveal();
+    /* initNosotrosReveal removed — nosotros.js handles all nosotros animations */
   }
 
   if (document.readyState === 'loading') {
