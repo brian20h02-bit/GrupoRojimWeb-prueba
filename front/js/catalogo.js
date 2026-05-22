@@ -448,9 +448,42 @@ function formatPrice(price) {
   return num.toLocaleString("es-AR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
+// ─── Hamburger menu (mobile navbar) ──────────────────────────────────────────
+function initHamburger() {
+  const btn  = document.getElementById("hamburger-btn");
+  const menu = document.getElementById("mobile-menu");
+  if (!btn || !menu) return;
+
+  function openMenu() {
+    btn.classList.add("open");
+    menu.classList.add("open");
+    btn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeMenu() {
+    btn.classList.remove("open");
+    menu.classList.remove("open");
+    btn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  btn.addEventListener("click", () => {
+    menu.classList.contains("open") ? closeMenu() : openMenu();
+  });
+  document.querySelectorAll(".mobile-nav-link, .mobile-actions .btn").forEach(link =>
+    link.addEventListener("click", closeMenu)
+  );
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+  document.addEventListener("click", e => {
+    if (menu.classList.contains("open") && !menu.contains(e.target) && !btn.contains(e.target))
+      closeMenu();
+  });
+}
+
 // ─── Bootstrap ────────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
   initNavbar();
+  initHamburger();
   initHero();
   initSidebar();
   initViewToggle();

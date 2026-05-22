@@ -2186,6 +2186,7 @@ NOSOTROS SECTION
 
   .nos-duo-grid {
     grid-template-columns: 1fr;
+    row-gap: 0; /* connector (60px) handles visual gap between cards */
   }
 
   .nos-duo-connector {
@@ -2296,6 +2297,29 @@ NOSOTROS SECTION
 
   .nos-duo-card {
     padding: 2rem;
+  }
+
+  /* Hide decorative connector on small screens — cards get their own row-gap */
+  .nos-duo-connector {
+    display: none;
+  }
+
+  .nos-duo-grid {
+    row-gap: 1.5rem;
+  }
+
+  /* Reduce glow circle so it stays proportionate on narrow cards */
+  .nos-duo-card-glow {
+    width: 140px;
+    height: 140px;
+    top: -10px;
+    right: -10px;
+  }
+
+  /* Disable hover lift on touch devices to prevent layout jump on tap */
+  .nos-duo-card:hover {
+    transform: none;
+    box-shadow: none;
   }
 
   .nos-cta-inner {
