@@ -49,9 +49,9 @@ export default function HomePage({ landingContent }: HomePageProps) {
 
       <PublicNavbar />
       <div dangerouslySetInnerHTML={{ __html: landingContent }} />
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" strategy="beforeInteractive" />
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" strategy="beforeInteractive" />
-      <Script src="/landing/js/config.js" strategy="beforeInteractive" />
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" strategy="afterInteractive" />
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" strategy="afterInteractive" />
+      <Script src="/landing/js/config.js" strategy="afterInteractive" />
       <Script src="/landing/js/main.js" strategy="afterInteractive" />
       <Script src="/landing/js/nosotros.js" strategy="afterInteractive" />
       <Script src="/landing/js/premium-motion.js" strategy="afterInteractive" />
