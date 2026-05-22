@@ -70,17 +70,31 @@ function initNosotrosAnimations() {
       trigger: '#nos-duo',
       start: 'top 74%',
       onEnter: function () {
+        /* On mobile the grid is single-column (stacked).
+           Use vertical (y) entrance instead of horizontal (x) to avoid
+           translateX pushing cards outside overflow:hidden bounds. */
+        var isMobile = window.matchMedia('(max-width: 960px)').matches;
+
         gsap.from('.nos-duo-header', {
           opacity: 0, y: 30, duration: 0.65, ease: 'power2.out'
         });
         gsap.from('#nos-card-rojim', {
-          opacity: 0, x: -65, duration: 0.9, ease: 'power3.out', delay: 0.15
+          opacity: 0,
+          x: isMobile ? 0 : -65,
+          y: isMobile ? 40 : 0,
+          duration: 0.9, ease: 'power3.out', delay: 0.15
         });
         gsap.from('#nos-card-luminoa', {
-          opacity: 0, x: 65, duration: 0.9, ease: 'power3.out', delay: 0.3
+          opacity: 0,
+          x: isMobile ? 0 : 65,
+          y: isMobile ? 40 : 0,
+          duration: 0.9, ease: 'power3.out', delay: 0.3
         });
         gsap.from('.nos-duo-connector', {
-          opacity: 0, scale: 0.75, duration: 0.6, ease: 'back.out(1.6)', delay: 0.45
+          opacity: 0,
+          scale: isMobile ? 1 : 0.75,
+          y: isMobile ? 20 : 0,
+          duration: 0.6, ease: isMobile ? 'power2.out' : 'back.out(1.6)', delay: 0.45
         });
       },
       once: true

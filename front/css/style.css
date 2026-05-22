@@ -2299,15 +2299,6 @@ NOSOTROS SECTION
     padding: 2rem;
   }
 
-  /* Hide decorative connector on small screens — cards get their own row-gap */
-  .nos-duo-connector {
-    display: none;
-  }
-
-  .nos-duo-grid {
-    row-gap: 1.5rem;
-  }
-
   /* Reduce glow circle so it stays proportionate on narrow cards */
   .nos-duo-card-glow {
     width: 140px;
