@@ -961,3 +961,76 @@
   .stx-cta-primary-btn, .stx-cta-wa-btn { width: 100%; justify-content: center; }
   .stx-submit-btn { width: 100%; justify-content: center; }
 }
+
+/* ============================================
+   STORY SECTION — EXPANDED BREAKPOINT (≤900px)
+   Covers landscape phones (portrait ≤768px is
+   already handled above; this adds landscape
+   phone + small-tablet coverage up to 900px).
+   All stages are shown stacked — no JS needed.
+   ============================================ */
+@media (max-width: 900px) {
+  /* Disable sticky scroll, go to linear layout */
+  .stx-story { height: auto; }
+  .stx-story-inner {
+    position: relative;
+    height: auto;
+    flex-direction: column;
+    padding: 80px 5vw 60px;
+    gap: 40px;
+  }
+
+  /* Hide JS-driven chrome */
+  .stx-prog-track,
+  .stx-dot-nav,
+  .stx-counter,
+  .stx-story-scroll-cue { display: none; }
+
+  /* Text wrap: auto height, full width */
+  .stx-texts-wrap {
+    position: relative;
+    height: auto;
+    width: 100%;
+  }
+
+  /* Show ALL stages stacked — no JS dependency */
+  .stx-stage-text {
+    position: relative !important;
+    top: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    display: flex !important;
+  }
+
+  /* Visual separator between stages */
+  .stx-stage-text + .stx-stage-text {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  /* Scene: full width, proportional height */
+  .stx-scene-wrap {
+    width: 100%;
+  }
+  .stx-scene-svg {
+    max-height: 70vw;
+  }
+
+  /* All SVG layers visible */
+  .stl-found,
+  .stl-struct,
+  .stl-elec,
+  .stl-finish,
+  .stl-final { opacity: 1 !important; }
+
+  /* Stage pill labels: wrap on small screens */
+  .stx-lpills {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .stx-lpill {
+    font-size: 0.65rem;
+    padding: 5px 10px;
+  }
+}

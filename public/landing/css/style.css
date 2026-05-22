@@ -1138,11 +1138,11 @@ a {
   }
 
   .servicios-section.open {
-    max-height: 200vh;
+    max-height: 140vh;
   }
 
   .servicios-panel {
-    min-height: 100vh;
+    min-height: 65vh;
     flex: 1 !important;
   }
 
@@ -1151,8 +1151,19 @@ a {
     height: 1px;
   }
 
+  /* Catalog panel: cover fills the reduced height without a dark void */
+  .sp-bg-catalogo img {
+    object-fit: cover;
+    object-position: center 35%;
+  }
+
   .sp-content {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.25rem;
+    align-items: flex-start;
+  }
+
+  .sp-desc {
+    max-width: 100%;
   }
 
   .sp-title {
@@ -2720,6 +2731,95 @@ NOSOTROS SECTION
     bottom: -10px;
     left: -10px;
     padding: 10px 14px;
+  }
+}
+
+/* ============================================
+   MOBILE RESPONSIVE IMPROVEMENTS v2
+   Prevents overflow, fixes text wrapping,
+   calibrates spacing for ≤640px devices.
+   ============================================ */
+
+/* ─── Overflow-wrap protection for long text ─────────────── */
+.nos-duo-desc,
+.nos-duo-features li,
+.nos-diff-item p,
+.nos-mvv-card p,
+.nos-tl-item p,
+.nos-hero-sub,
+.nos-cta-sub {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Grid/flex items: prevent implicit min-width overflow */
+.nos-duo-grid,
+.nos-duo-card,
+.nos-mvv-grid,
+.nos-diff-grid,
+.nos-valores-grid {
+  min-width: 0;
+}
+
+.nos-duo-card,
+.nos-mvv-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* ─── ≤ 640px ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+
+  /* nos-hero: remove forced viewport height on mobile */
+  .nos-hero {
+    min-height: auto;
+    padding-top: 4.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  /* Features list: long words break cleanly */
+  .nos-duo-features li {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  /* Card: slightly tighter padding on small phones */
+  .nos-duo-card {
+    padding: 1.75rem 1.5rem;
+  }
+
+  /* Nos CTA inner card */
+  .nos-cta-inner {
+    padding: 2.5rem 1.5rem;
+  }
+
+  /* Service panel button: full-width on small screens */
+  .sp-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* ─── ≤ 400px (very small phones) ────────────────────────── */
+@media (max-width: 400px) {
+  .nos-duo-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .nos-mvv-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .nos-cta-inner {
+    padding: 2rem 1rem;
+  }
+
+  .sp-content {
+    padding: 1.75rem 1rem;
   }
 }
 
