@@ -20,8 +20,8 @@ async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
 
   if (!requireRole(req, res, [Role.ADMIN])) return;
 
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseUrl = (process.env.SUPABASE_URL ?? "").replace(/\/$/, "");
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? "";
 
   if (!supabaseUrl || !supabaseServiceKey) {
     console.error("Supabase Storage not configured: missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY");
@@ -54,6 +54,7 @@ async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
 
   try {
     const uploadUrl = `${supabaseUrl}/storage/v1/object/product-images/${uniqueName}`;
+    console.log("Uploading to Supabase Storage:", uploadUrl);
     const uploadResponse = await fetch(uploadUrl, {
       method: "POST",
       headers: {
@@ -66,11 +67,12 @@ async function handler(req: AuthenticatedNextApiRequest, res: NextApiResponse) {
 
     if (!uploadResponse.ok) {
       const errorText = await uploadResponse.text();
-      console.error("Supabase Storage error:", errorText);
-      return res.status(500).json({ error: "No se pudo subir la imagen." });
+      console.error("Supabase Storage error:", uploadResponse.status, errorText);
+      return res.status(500).json({ error: `No se pudo subir la imagen: ${uploadResponse.status}` });
     }
 
     const publicUrl = `${supabaseUrl}/storage/v1/object/public/product-images/${uniqueName}`;
+    console.log("Upload success:", publicUrl);
     return res.status(200).json({ url: publicUrl });
   } catch (err) {
     console.error("Upload error:", err);
