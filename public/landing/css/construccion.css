@@ -884,6 +884,12 @@
 }
 
 
+/* ─── PANEL SLIDE-IN ANIMATION ───────────────────────────────── */
+@keyframes stxPanelIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
 /* ─── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .stx-hero { padding: 140px 6vw 90px; }
@@ -1081,5 +1087,42 @@
   .stx-lpill {
     font-size: .58rem;
     padding: 4px 9px;
+  }
+}
+
+/* ─── MOBILE SAFETY OVERRIDES (≤900px) ───────────────────────────
+   Defense-in-depth: ensure hero, SVG layers and reveal sections are
+   always visible regardless of JS/GSAP animation state.
+   GSAP and IntersectionObserver still run; these rules just guarantee
+   a visible fallback when JS fails or animations don't complete.
+─────────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  /* Hero: remove GSAP opacity-0 starting states */
+  .stx-word,
+  .stx-hero-sub,
+  .stx-hero-ctas,
+  .stx-hero-stats {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* SVG story layers: always visible on mobile */
+  .stl-found,
+  .stl-struct,
+  .stl-elec,
+  .stl-finish,
+  .stl-final {
+    opacity: 1 !important;
+  }
+  /* Remove the GSAP-driven clipPath on .stl-finish */
+  .stl-finish {
+    clip-path: none !important;
+  }
+
+  /* Form / CTA reveal sections: always visible on mobile */
+  .stx-reveal-el {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

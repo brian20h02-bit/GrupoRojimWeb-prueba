@@ -292,6 +292,8 @@
       else if (diff < 0 && currentStage > 0) activateTextStage(currentStage - 1);
     }, { passive: true });
   }
+
+  /* ─────────────────────────────────────────────────────────
      REVEAL ELEMENTS (form / cta sections)
   ───────────────────────────────────────────────────────── */
   function initRevealEls() {
