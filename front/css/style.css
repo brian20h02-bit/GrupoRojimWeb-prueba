@@ -3040,36 +3040,76 @@ body {
   background: var(--color-page);
 }
 
+.servicios-section {
+  background:
+    linear-gradient(180deg, #f8f5f0 0%, #ffffff 42%, #f6f1e9 100%);
+}
+
 .servicios-panel {
-  background: var(--color-surface);
+  background: linear-gradient(135deg, #f7f2e9, #ffffff);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
 .servicios-panel::after {
-  box-shadow: inset 0 0 0 1px rgba(125, 96, 54, 0.16);
+  box-shadow:
+    inset 0 0 0 1px rgba(125, 96, 54, 0.18),
+    inset 0 -120px 120px rgba(33, 22, 11, 0.08);
 }
 
 .sp-bg-catalogo img {
-  background: linear-gradient(135deg, #ffffff, var(--color-surface-soft));
+  background: linear-gradient(135deg, #efe6d7, #ffffff);
 }
 
 .sp-bg img {
-  opacity: 0.24;
+  opacity: 0.72;
+  filter: saturate(0.96) contrast(1.06) brightness(1.02);
 }
 
 .sp-overlay,
 .sp-overlay-dark {
   background:
-    linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.82) 48%, rgba(255, 255, 255, 0.42) 100%),
-    linear-gradient(135deg, rgba(245, 166, 35, 0.16), transparent 58%);
+    linear-gradient(to top, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.66) 42%, rgba(255, 255, 255, 0.42) 100%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.58) 42%, rgba(255, 255, 255, 0.24) 100%),
+    linear-gradient(135deg, rgba(245, 166, 35, 0.20), rgba(74, 44, 10, 0.08) 58%, transparent 100%);
 }
 
 .panel-catalogo,
 .panel-construccion {
-  background: linear-gradient(135deg, #ffffff, var(--color-surface-soft));
+  background: linear-gradient(135deg, #efe6d7, #ffffff);
+}
+
+.servicios-panel:hover .sp-bg img {
+  opacity: 0.84;
+  filter: saturate(1.04) contrast(1.08) brightness(1.00);
+}
+
+.servicios-panel:hover .sp-overlay,
+.servicios-panel:hover .sp-overlay-dark {
+  background:
+    linear-gradient(to top, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.60) 44%, rgba(255, 255, 255, 0.36) 100%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.52) 42%, rgba(255, 255, 255, 0.18) 100%),
+    linear-gradient(135deg, rgba(245, 166, 35, 0.22), rgba(74, 44, 10, 0.10) 58%, transparent 100%);
+}
+
+.sp-content {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.sp-title {
+  color: #171717;
+}
+
+.sp-desc {
+  color: #404040;
+}
+
+.sp-btn {
+  box-shadow: 0 12px 26px rgba(42, 26, 10, 0.14);
 }
 
 .servicios-divider {
-  background: rgba(125, 96, 54, 0.16);
+  background: linear-gradient(to bottom, transparent, rgba(125, 96, 54, 0.34), transparent);
+  box-shadow: 0 0 22px rgba(42, 26, 10, 0.08);
 }
 
 .nos-hero-bg::before,
@@ -3160,7 +3200,17 @@ body {
   }
 
   .sp-bg img {
-    opacity: 0.18;
+    opacity: 0.62;
+  }
+
+  .sp-overlay,
+  .sp-overlay-dark,
+  .servicios-panel:hover .sp-overlay,
+  .servicios-panel:hover .sp-overlay-dark {
+    background:
+      linear-gradient(to top, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.68) 52%, rgba(255, 255, 255, 0.44) 100%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.58) 48%, rgba(255, 255, 255, 0.28) 100%),
+      linear-gradient(135deg, rgba(245, 166, 35, 0.18), transparent 72%);
   }
 }
 
