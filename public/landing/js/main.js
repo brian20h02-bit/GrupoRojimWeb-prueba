@@ -64,16 +64,14 @@
 
   const navbar = document.getElementById('navbar');
 
-  function handleScroll() {
-    if (window.scrollY > 30) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+  if (navbar) {
+    function handleScroll() {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
     }
-  }
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll(); // run on load
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
 
 
   /* ------------------------------------------
@@ -202,8 +200,7 @@
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
       if (href === '#') return;
-      if (href === '#nosotros') { e.preventDefault(); return; } // handled by nosotros toggle
-      if (href === '#servicios') { e.preventDefault(); return; } // handled by servicios toggle
+      if (href === '#nosotros') { e.preventDefault(); return; } // handled by nosotros nav triggers
 
       const target = document.querySelector(href);
       if (target) {
@@ -231,55 +228,35 @@
 
 
   /* ------------------------------------------
-     8. NOSOTROS + SERVICIOS — Mutual-exclusive sections
-     Only one can be open at a time.
-     Home button closes both.
+     8. NOSOTROS — Expandable section
+     Home button closes nosotros.
   ------------------------------------------ */
   const nosotrosSection = document.getElementById('nosotros');
-  const serviciosSection = document.getElementById('servicios');
   const btnNosotros      = document.getElementById('btn-nosotros');
-  // folder-tab elements removed — new nosotros uses GSAP storytelling
-  let nCurrent = 0; // kept for safety (prev/next refs are null-checked below)
+  let nCurrent = 0;
 
-  function closeAll() {
+  function closeNosotros() {
     nosotrosSection && nosotrosSection.classList.remove('open');
-    serviciosSection && serviciosSection.classList.remove('open');
   }
 
-  function openSection(section) {
-    // Close all other sections INSTANTLY so the layout is stable
-    [nosotrosSection, serviciosSection].forEach(s => {
-      if (s && s !== section && s.classList.contains('open')) {
-        s.style.transition = 'none';
-        s.classList.remove('open');
-        void s.offsetHeight; // force synchronous reflow
-        s.style.transition = '';
-      }
-    });
+  function openNosotros() {
+    if (!nosotrosSection) return;
+    nosotrosSection.classList.add('open');
 
-    // Open the target section (starts its CSS transition)
-    section.classList.add('open');
-
-    // ROOT CAUSE FIX: the section starts at max-height:0 so the page has no
-    // scrollable room until the transition finishes. We must wait for the
-    // max-height transition to complete before scrolling — only then does the
-    // document have enough height to actually reach this section.
     function onTransitionEnd(e) {
       if (e.propertyName !== 'max-height') return;
-      section.removeEventListener('transitionend', onTransitionEnd);
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (section === nosotrosSection && typeof window.initNosotrosAnimations === 'function') {
+      nosotrosSection.removeEventListener('transitionend', onTransitionEnd);
+      nosotrosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (typeof window.initNosotrosAnimations === 'function') {
         window.initNosotrosAnimations();
       }
     }
-    section.addEventListener('transitionend', onTransitionEnd);
+    nosotrosSection.addEventListener('transitionend', onTransitionEnd);
 
-    // Safety fallback: if transitionend never fires (e.g. prefers-reduced-motion
-    // or the section was somehow already open), scroll after the known duration.
     setTimeout(() => {
-      section.removeEventListener('transitionend', onTransitionEnd);
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (section === nosotrosSection && typeof window.initNosotrosAnimations === 'function') {
+      nosotrosSection.removeEventListener('transitionend', onTransitionEnd);
+      nosotrosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (typeof window.initNosotrosAnimations === 'function') {
         window.initNosotrosAnimations();
       }
     }, 900);
@@ -290,27 +267,16 @@
     if (nosotrosSection.classList.contains('open')) {
       nosotrosSection.classList.remove('open');
     } else {
-      openSection(nosotrosSection);
+      openNosotros();
     }
   }
 
-  function toggleServicios() {
-    if (!serviciosSection) return;
-    if (serviciosSection.classList.contains('open')) {
-      serviciosSection.classList.remove('open');
-    } else {
-      openSection(serviciosSection);
-    }
-  }
-
-  // Home links → close both and scroll to top
   document.querySelectorAll('a[href="#"], #nav-home, #mobile-home').forEach(link => {
     link.addEventListener('click', () => {
-      closeAll();
+      closeNosotros();
     });
   });
 
-  // Nosotros button
   if (btnNosotros) {
     btnNosotros.addEventListener('click', function (e) {
       e.preventDefault();
@@ -319,23 +285,16 @@
     });
   }
 
-  // Servicios triggers (navbar link + hero button)
-  const serviciosTriggers = document.querySelectorAll('a[href="#servicios"], button[data-target="servicios"]');
-  serviciosTriggers.forEach(trigger => {
-    trigger.addEventListener('click', function (e) {
+  document.querySelectorAll('#nav-nosotros, #mobile-nosotros, a[href="#nosotros"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopImmediatePropagation();
-      toggleServicios();
+      toggleNosotros();
     });
   });
 
-  const btnServiciosHero = document.getElementById('btn-servicios-hero');
-  if (btnServiciosHero) {
-    btnServiciosHero.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      toggleServicios();
-    });
+  if (window.location.hash === '#nosotros') {
+    setTimeout(openNosotros, 150);
   }
 
 })();

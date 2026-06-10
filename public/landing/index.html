@@ -16,7 +16,7 @@
 <body>
 
   <!-- ===== HEADER / NAVBAR ===== -->
-  <header class="navbar" id="navbar">
+  <header class="navbar scrolled" id="navbar">
     <div class="nav-container">
 
       <!-- Logo -->
@@ -29,7 +29,7 @@
       <nav class="nav-links" id="nav-links" role="navigation" aria-label="Navegación principal">
         <a href="#" class="nav-link active" id="nav-home">Home</a>
         <a href="#servicios" class="nav-link" id="nav-servicios">Servicios</a>
-        <a href="#clientes" class="nav-link" id="nav-clientes">Clientes</a>
+        <a href="#nosotros" class="nav-link" id="nav-nosotros">Nosotros</a>
       </nav>
 
       <!-- Auth Buttons -->
@@ -52,7 +52,7 @@
       <nav class="mobile-nav" aria-label="Navegación móvil">
         <a href="#" class="mobile-nav-link" id="mobile-home">Home</a>
         <a href="#servicios" class="mobile-nav-link" id="mobile-servicios">Servicios</a>
-        <a href="#clientes" class="mobile-nav-link" id="mobile-clientes">Clientes</a>
+        <a href="#nosotros" class="mobile-nav-link" id="mobile-nosotros">Nosotros</a>
       </nav>
       <div class="mobile-actions">
         <a href="#" data-auth-link class="btn btn-outline btn-full" id="mobile-btn-login">Log in</a>
@@ -160,7 +160,7 @@
               <em class="nos-em">Creamos soluciones.</em>
             </h2>
             <p class="nos-hero-sub" id="nos-hero-sub">
-              Grupo Rojim y Luminoa integran construcción, distribución eléctrica e iluminación para ofrecer soluciones completas, eficientes y escalables en el norte argentino.
+              Grupo Rojim integra Servicon y Luminoa para ofrecer construcción, distribución eléctrica e iluminación con soluciones completas, eficientes y escalables en el norte argentino.
             </p>
             <div class="nos-hero-stats" id="nos-hero-stats">
               <div class="nos-stat">
@@ -239,7 +239,7 @@
                 <div class="nos-tl-body">
                   <span class="nos-tl-year">Hoy</span>
                   <h4 class="nos-tl-title">Empresa consolidada</h4>
-                  <p class="nos-tl-text">Doble unidad de negocio integrada: Luminoa en distribución eléctrica y Grupo Rojim en ejecución de obras. Soluciones integrales de punta a punta.</p>
+                  <p class="nos-tl-text">Doble unidad de negocio integrada: Luminoa en distribución eléctrica y Servicon en ejecución de obras. Soluciones integrales de punta a punta bajo Grupo Rojim.</p>
                 </div>
               </div>
             </div>
@@ -254,8 +254,8 @@
           </div>
           <div class="nos-duo-grid">
 
-            <!-- Grupo Rojim — empresa madre -->
-            <div class="nos-duo-card nos-card-rojim" id="nos-card-rojim">
+            <!-- Servicon — construcción -->
+            <div class="nos-duo-card nos-card-rojim nos-card-servicon" id="nos-card-rojim">
               <div class="nos-duo-card-glow" aria-hidden="true"></div>
               <div class="nos-duo-num">01</div>
               <div class="nos-duo-icon">
@@ -263,9 +263,9 @@
                   <path d="M6 42V22L24 6L42 22V42H30V30H18V42H6Z" fill="currentColor"/>
                 </svg>
               </div>
-              <h3 class="nos-duo-name">Grupo Rojim</h3>
-              <p class="nos-duo-tagline">Construcción y soluciones llave en mano</p>
-              <p class="nos-duo-desc">Ejecutamos proyectos de construcción, instalaciones eléctricas y soluciones integrales. Desde la planificación hasta la entrega total, con equipo propio y trayectoria comprobada en el NOA.</p>
+              <h3 class="nos-duo-name">Servicon</h3>
+              <p class="nos-duo-tagline">Construcción integral · Grupo Rojim</p>
+              <p class="nos-duo-desc">Desde Servicon ejecutamos proyectos de construcción, instalaciones eléctricas y soluciones integrales. Desde la planificación hasta la entrega total, con equipo propio y trayectoria comprobada en el NOA.</p>
               <ul class="nos-duo-features">
                 <li>Ejecución de obra civil</li>
                 <li>Instalaciones eléctricas completas</li>
@@ -295,10 +295,10 @@
                 </svg>
               </div>
               <h3 class="nos-duo-name">Luminoa</h3>
-              <p class="nos-duo-tagline">Distribución eléctrica e iluminación</p>
+              <p class="nos-duo-tagline">Distribución eléctrica · Grupo Rojim</p>
               <p class="nos-duo-desc">Distribuimos materiales eléctricos de alta calidad, luminarias LED industriales y residenciales con stock permanente, asesoramiento técnico y pronta entrega en todo el NOA.</p>
               <ul class="nos-duo-features">
-                <li>Cables y conductores certificados</li>
+                <li>Conductores certificados</li>
                 <li>Tableros y automatización</li>
                 <li>Iluminación LED industrial y residencial</li>
                 <li>Stock permanente en depósito propio</li>
@@ -453,35 +453,113 @@
     </section>
 
     <!-- ===== SERVICIOS SECTION ===== -->
-    <section class="servicios-section" id="servicios">
-      <div class="servicios-panel panel-catalogo">
-        <!-- Background image (smaller, positioned) -->
-        <div class="sp-bg sp-bg-catalogo" aria-hidden="true">
-          <img src="./assets/images/hero_electrical.png" alt="" />
-        </div>
-        <div class="sp-overlay"></div>
-        <div class="sp-content">
-          <span class="sp-num">01</span>
-          <h2 class="sp-title">Ver<br>Catálogo</h2>
-          <p class="sp-desc">Explorá nuestra línea completa de materiales eléctricos, luminarias LED y herramientas para profesionales.</p>
-          <a href="catalogo.html" class="btn btn-cta sp-btn">Ver catálogo</a>
-        </div>
-      </div>
+    <section class="srv-section" id="servicios">
+      <div class="srv-inner">
 
-      <div class="servicios-divider" aria-hidden="true"></div>
+        <header class="srv-header">
+          <p class="srv-label">Servicios</p>
+          <h2 class="srv-title">Soluciones integrales para cada etapa de tu proyecto</h2>
+          <p class="srv-subtitle">Grupo Rojim integra dos unidades especializadas: <strong>Luminoa</strong> en distribución eléctrica y <strong>Servicon</strong> en construcción integral. Acompañamos cada proyecto con experiencia, stock permanente y asesoramiento especializado.</p>
+        </header>
 
-      <div class="servicios-panel panel-construccion">
-        <!-- Background: hero_bg.jpg fills this panel -->
-        <div class="sp-bg sp-bg-construccion" aria-hidden="true">
-          <img src="./assets/images/hero_bg.jpg" alt="" />
+        <!-- Bloque 1: Luminoa — Distribución eléctrica -->
+        <article class="srv-block srv-block--luminoa" id="srv-block-catalogo">
+          <div class="srv-block-content">
+            <span class="srv-brand srv-brand--luminoa">Luminoa</span>
+            <span class="srv-tag">
+              <span class="srv-tag-icon" aria-hidden="true">⚡</span>
+              Distribución eléctrica
+            </span>
+            <h3 class="srv-block-title">Explorá nuestro catálogo profesional</h3>
+            <p class="srv-block-desc">Desde Luminoa distribuimos más de 5000 productos en materiales eléctricos, iluminación, protecciones, conductores y herramientas para proyectos residenciales, comerciales e industriales.</p>
+            <ul class="srv-benefits">
+              <li>Stock permanente</li>
+              <li>Entrega rápida en Salta y Jujuy</li>
+              <li>Primeras marcas</li>
+              <li>Asesoramiento técnico</li>
+            </ul>
+            <div class="srv-actions">
+              <a href="catalogo.html" class="btn btn-cta srv-btn" id="btn-servicios-catalogo">Ver catálogo</a>
+              <a href="#" data-auth-link class="btn btn-outline srv-btn srv-btn-secondary">Solicitar cotización</a>
+            </div>
+          </div>
+          <div class="srv-block-visual">
+            <figure class="srv-image-wrap srv-image-wrap--electric">
+              <img
+                src="./assets/images/serv_distribucion.jpg"
+                alt="Catálogo profesional Luminoa de materiales eléctricos e iluminación"
+                loading="lazy"
+                onerror="this.style.display='none'; this.parentElement.classList.add('srv-image-fallback');"
+              />
+            </figure>
+          </div>
+        </article>
+
+        <!-- Bloque 2: Servicon — Construcción integral -->
+        <article class="srv-block srv-block--reverse srv-block--servicon" id="srv-block-construccion">
+          <div class="srv-block-content">
+            <span class="srv-brand srv-brand--servicon">Servicon</span>
+            <span class="srv-tag">
+              <span class="srv-tag-icon" aria-hidden="true">🏗</span>
+              Construcción integral
+            </span>
+            <h3 class="srv-block-title">Convertimos proyectos en obras reales</h3>
+            <p class="srv-block-desc">Con Servicon acompañamos cada etapa de construcción, desde la planificación y provisión de materiales hasta la ejecución y seguimiento técnico.</p>
+            <ul class="srv-benefits">
+              <li>Asesoramiento personalizado</li>
+              <li>Presupuesto a medida</li>
+              <li>Seguimiento profesional</li>
+              <li>Soluciones llave en mano</li>
+            </ul>
+            <div class="srv-actions">
+              <a href="construccion.html" class="btn btn-cta srv-btn" id="btn-servicios-nosotros">Comenzar proyecto</a>
+              <a href="#" data-auth-link class="btn btn-outline srv-btn srv-btn-secondary">Hablar con un asesor</a>
+            </div>
+          </div>
+          <div class="srv-block-visual">
+            <figure class="srv-image-wrap srv-image-wrap--construction">
+              <img
+                src="./assets/images/serv_construccion.jpg"
+                alt="Obra de construcción moderna ejecutada por Servicon"
+                loading="lazy"
+                onerror="this.style.display='none'; this.parentElement.classList.add('srv-image-fallback');"
+              />
+            </figure>
+          </div>
+        </article>
+
+        <!-- Tarjetas de valor -->
+        <div class="srv-valores" id="srv-valores">
+          <article class="srv-valor-card">
+            <div class="srv-valor-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h4 class="srv-valor-title">Pronta Entrega</h4>
+            <p class="srv-valor-text">Logística propia y stock permanente para que tu obra no se detenga.</p>
+          </article>
+          <article class="srv-valor-card">
+            <div class="srv-valor-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h4 class="srv-valor-title">Atención Personalizada</h4>
+            <p class="srv-valor-text">Asesoramiento técnico dedicado para cada proyecto y necesidad.</p>
+          </article>
+          <article class="srv-valor-card">
+            <div class="srv-valor-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h4 class="srv-valor-title">Calidad Garantizada</h4>
+            <p class="srv-valor-text">Materiales certificados y primeras marcas con respaldo comprobado.</p>
+          </article>
+          <article class="srv-valor-card">
+            <div class="srv-valor-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h4 class="srv-valor-title">Cobertura Regional</h4>
+            <p class="srv-valor-text">Presencia activa en Salta, Jujuy y todo el norte argentino.</p>
+          </article>
         </div>
-        <div class="sp-overlay sp-overlay-dark"></div>
-        <div class="sp-content">
-          <span class="sp-num">02</span>
-          <h2 class="sp-title">Comenzá<br>tu Construcción</h2>
-          <p class="sp-desc">Asesoramiento personalizado, stock permanente y entrega rápida para que tu obra no se detenga.</p>
-          <a href="construccion.html" class="btn btn-ghost sp-btn" id="btn-servicios-nosotros">Comenzar</a>
-        </div>
+
       </div>
     </section>
 

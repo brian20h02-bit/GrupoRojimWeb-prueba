@@ -118,11 +118,11 @@ function initNosotrosAnimations() {
       onEnter: function () {
         gsap.from('.nos-valor-item', {
           opacity: 0,
-          scale: 0.78,
           y: 22,
           stagger: 0.07,
           duration: 0.6,
-          ease: 'back.out(1.3)'
+          ease: 'power2.out',
+          clearProps: 'transform'
         });
       },
       once: true
@@ -142,7 +142,8 @@ function initNosotrosAnimations() {
           stagger: 0.07,
           duration: 0.7,
           ease: 'power2.out',
-          delay: 0.18
+          delay: 0.18,
+          clearProps: 'transform'
         });
       },
       once: true

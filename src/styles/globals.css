@@ -12,6 +12,12 @@ body,
   min-height: 100%;
 }
 
+#__next {
+  transform: none;
+  filter: none;
+  perspective: none;
+}
+
 body {
   margin: 0;
   background: #f7f9fc;

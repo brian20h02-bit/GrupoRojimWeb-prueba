@@ -61,7 +61,7 @@ export default function HomePage({ landingContent }: HomePageProps) {
 
 function PublicNavbar() {
   return (
-    <header className="navbar" id="navbar">
+    <header className="navbar scrolled" id="navbar">
       <div className="nav-container">
         <a href="#" className="nav-logo" id="nav-logo-link" aria-label="Ir al inicio">
           <img
@@ -86,8 +86,8 @@ function PublicNavbar() {
           <a href="#servicios" className="nav-link" id="nav-servicios">
             Servicios
           </a>
-          <a href="#clientes" className="nav-link" id="nav-clientes">
-            Clientes
+          <a href="#nosotros" className="nav-link" id="nav-nosotros">
+            Nosotros
           </a>
         </nav>
 
@@ -121,8 +121,8 @@ function PublicNavbar() {
           <a href="#servicios" className="mobile-nav-link" id="mobile-servicios">
             Servicios
           </a>
-          <a href="#clientes" className="mobile-nav-link" id="mobile-clientes">
-            Clientes
+          <a href="#nosotros" className="mobile-nav-link" id="mobile-nosotros">
+            Nosotros
           </a>
         </nav>
         <div className="mobile-actions">

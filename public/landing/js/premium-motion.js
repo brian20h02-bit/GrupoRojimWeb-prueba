@@ -242,50 +242,84 @@
      6. NAVBAR COMPACT — Height-compresses after 80 px scroll
   ────────────────────────────────────────────────────────────── */
   function initNavbarCompact() {
-    const navbar = document.getElementById('navbar');
-    if (!navbar) return;
-
-    let ticking = false;
-    const update = () => {
-      navbar.classList.toggle('compact', window.scrollY > 80);
-      ticking = false;
-    };
-    window.addEventListener('scroll', () => {
-      if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-    update();
+    /* Deshabilitado: la navbar permanece fija sin compactar al hacer scroll */
   }
 
 
   /* ──────────────────────────────────────────────────────────────
-     7. SERVICIOS PANELS — Reveal when section opens
+     7. SERVICIOS — Scroll reveal (Framer Motion–style)
   ────────────────────────────────────────────────────────────── */
   function initServiciosReveal() {
     if (prefersReduced) return;
-    const section = document.getElementById('servicios');
-    if (!section) return;
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-    let fired = false;
-    const mo = new MutationObserver(() => {
-      if (!fired && section.classList.contains('open')) {
-        fired = true;
-        mo.disconnect();
-        const tl = gsap.timeline({ delay: 0.25 });
-        tl.from('.servicios-panel', {
-            opacity: 0, y: 24, duration: 0.85, stagger: 0.18, ease: 'power3.out'
-          })
-          .from('.sp-num', {
-            opacity: 0, y: 10, duration: 0.5, stagger: 0.18, ease: 'power2.out'
-          }, '-=0.5')
-          .from('.sp-title', {
-            opacity: 0, y: 18, duration: 0.7, stagger: 0.18, ease: 'power3.out'
-          }, '-=0.45')
-          .from('.sp-desc, .sp-btn', {
-            opacity: 0, y: 12, duration: 0.6, stagger: 0.12, ease: 'power2.out'
-          }, '-=0.4');
+    gsap.registerPlugin(ScrollTrigger);
+
+    const header = document.querySelector('.srv-header');
+    if (header) {
+      gsap.from(header.children, {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: header,
+          start: 'top 82%',
+          once: true
+        }
+      });
+    }
+
+    document.querySelectorAll('.srv-block').forEach(block => {
+      const content = block.querySelector('.srv-block-content');
+      const visual = block.querySelector('.srv-block-visual');
+
+      if (content) {
+        gsap.from(content.children, {
+          opacity: 0,
+          y: 40,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: block,
+            start: 'top 78%',
+            once: true
+          }
+        });
+      }
+
+      if (visual) {
+        gsap.from(visual, {
+          opacity: 0,
+          y: 40,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: block,
+            start: 'top 78%',
+            once: true
+          }
+        });
       }
     });
-    mo.observe(section, { attributes: true, attributeFilter: ['class'] });
+
+    const valores = document.getElementById('srv-valores');
+    if (valores) {
+      gsap.from('.srv-valor-card', {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: valores,
+          start: 'top 82%',
+          once: true
+        }
+      });
+    }
   }
 
 
